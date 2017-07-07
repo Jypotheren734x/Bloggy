@@ -1,0 +1,81 @@
+<div id="post">
+  <div class="container">
+
+    <div class="row">
+
+      <!-- Blog Post Content Column -->
+      <div class="col-lg-10">
+
+        <!-- Blog Post -->
+
+        <!-- Title -->
+        <h1><%= @post.title %></h1>
+
+        <!-- Author -->
+        <p class="lead">
+          by <a href="/user/<%= @post.user_id %>"><%= @post.user.full_name %></a>
+        </p>
+
+        <hr>
+
+        <!-- Date/Time -->
+        <p><span class="fa fa-time"></span> Posted on <%= @post.created_at %></p>
+
+        <hr>
+
+        <!-- Post Content -->
+        <%= @post.content.html_safe %>
+        <hr>
+
+        <!-- Blog Comments -->
+
+        <!-- Comments Form -->
+        <div class="well">
+          <h4>Leave a Comment:</h4>
+          <form id="comment-form" role="form" action="/post/index?id=<%= @post.id %>" method="post">
+            <div class="form-group">
+              <textarea name="content" class="form-control" rows="3" form="comment-form"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+
+        <hr>
+
+        <!-- Posted Comments -->
+
+        <!-- Comment -->
+        <div class="container">
+          <div class="row">
+            <div class="comments col-md-9" id="comments">
+              <h3 class="mb-2">Comments</h3>
+              <% @post.comments.each do |comment| %>
+                  <div class="comment mb-2 row">
+                    <div class="comment-avatar col-md-1 col-sm-2 text-center pr-1">
+                      <a href=""><img class="mx-auto rounded-circle img-fluid" src="http://demos.themes.guide/bodeo/assets/images/users/m103.jpg" alt="avatar"></a>
+                    </div>
+                    <div class="comment-content col-md-11 col-sm-10">
+                      <h6 class="small comment-meta"><a href="#"><%= comment.user.username %></a> <%= comment.date_created %></h6>
+                      <div class="comment-body">
+                        <p>
+                          <%= comment.content %>
+                          <br>
+                          <a href="#sub-comment-form" class="text-right small" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample"><i class="ion-reply"></i> Reply</a>
+                        </p>
+                        <form id="sub-comment-form" role="form" action="/post/<%= @post.id %>/<%= comment.id %>" method="post" class="collapse">
+                          <div class="form-group">
+                            <textarea name="content" class="form-control" rows="3" form="sub-comment-form"></textarea>
+                          </div>
+                          <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
