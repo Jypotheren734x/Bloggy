@@ -1,0 +1,220 @@
+<div class="container">
+  <div class="row m-y-2">
+    <div class="col-lg-8 push-lg-4">
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a href="" data-target="#profile" data-toggle="tab" class="nav-link active">Profile</a>
+        </li>
+        <li class="nav-item">
+          <a href="" data-target="#messages" data-toggle="tab" class="nav-link">Messages</a>
+        </li>
+        <li class="nav-item">
+          <a href="" data-target="#posts" data-toggle="tab" class="nav-link">Posts</a>
+        </li>
+        <li class="nav-item">
+          <a href="" data-target="#edit" data-toggle="tab" class="nav-link">Edit</a>
+        </li>
+      </ul>
+      <div class="tab-content p-b-4">
+        <div class="tab-pane active" id="profile">
+          <h4 class="m-y-2"><%= @user.full_name %></h4>
+          <div class="row">
+            <div class="col-md-6">
+              <p>
+                Username: <%= @user.username %>
+              </p>
+              <p>
+                Age: <%= @user.age %>
+              </p>
+            </div>
+            <div class="col-md-6">
+              <h6>Recent Tags</h6>
+              <a href="" class="tag tag-default tag-pill">html5</a>
+              <a href="" class="tag tag-default tag-pill">react</a>
+              <a href="" class="tag tag-default tag-pill">codeply</a>
+              <a href="" class="tag tag-default tag-pill">angularjs</a>
+              <a href="" class="tag tag-default tag-pill">css3</a>
+              <a href="" class="tag tag-default tag-pill">jquery</a>
+              <a href="" class="tag tag-default tag-pill">bootstrap</a>
+              <a href="" class="tag tag-default tag-pill">responsive-design</a>
+              <hr>
+              <span class="tag tag-primary"><i class="fa fa-user"></i> Followers: <%= current_user.followers %></span>
+              <span class="tag tag-danger"><i class="fa fa-eye"></i> Views: <%= current_user.views %></span>
+              <span class="tag tag-danger"><i class="fa fa-file-text"></i> Posts: <%= current_user.number_of_posts %></span>
+            </div>
+            <div class="col-md-12">
+              <h4 class="m-t-2"><span class="fa fa-clock-o ion-clock pull-xs-right"></span> Recent Activity</h4>
+              <table class="table table-hover table-striped">
+                <tbody>
+                <tr>
+                  <td>
+                    <strong>Abby</strong> joined ACME Project Team in <strong>`Collaboration`</strong>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>Gary</strong> deleted My Board1 in <strong>`Discussions`</strong>
+                  </td>
+
+                </tr>
+                <tr>
+                  <td>
+                    <strong>Kensington</strong> deleted MyBoard3 in <strong>`Discussions`</strong>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>John</strong> deleted My Board1 in <strong>`Discussions`</strong>
+                  </td>
+
+                </tr>
+                <tr>
+                  <td>
+                    <strong>Skell</strong> deleted his post Look at Why this is.. in <strong>`Discussions`</strong>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!--/row-->
+        </div>
+        <div class="tab-pane" id="posts">
+          <% current_user.posts.each do |post| %>
+              <div class="card">
+                <div class="card-block">
+                  <div class="close">
+                    <%= link_to "Delete Post", post_destroy_path + "?id=" + post.id.to_s, method: :delete, class: "fa fa-minus" %>
+                  </div>
+                  <h4 class="card-title"><%= link_to post.title, post_index_path + "?id=" + post.id.to_s, method: :get %></h4>
+                  <p class="card-text"><%= post.content.html_safe %></p>
+                </div>
+                <div class="card-footer">
+                  <p class="card-text">
+                    <small class="text-muted">Last updated: <%= post.updated_at %></small>
+                  </p>
+                </div>
+              </div>
+          <% end %>
+        </div>
+        <div class="tab-pane" id="messages">
+          <h4 class="m-y-2">Recent Messages &amp; Notifications</h4>
+          <div class="alert alert-info alert-dismissable">
+            <a class="panel-close close" data-dismiss="alert">×</a> This is an <strong>.alert</strong>. Use this to show
+            important messages to the user.
+          </div>
+          <table class="table table-hover table-striped">
+            <tbody>
+            <tr>
+              <td>
+                <span class="pull-xs-right font-weight-bold">3 hrs ago</span> Here is your a link to the latest summary
+                report from the..
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span class="pull-xs-right font-weight-bold">Yesterday</span> There has been a request on your account
+                since that was..
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span class="pull-xs-right font-weight-bold">9/10</span> Porttitor vitae ultrices quis, dapibus id
+                dolor. Morbi venenatis lacinia rhoncus.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span class="pull-xs-right font-weight-bold">9/4</span> Vestibulum tincidunt ullamcorper eros eget
+                luctus.
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="tab-pane" id="edit">
+          <h4 class="m-y-2">Edit Profile</h4>
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {method: :put}) do |f| %>
+              <%= devise_error_messages! %>
+              <div class="field">
+                <%= f.label :first_name, class: "col-lg-3 col-form-label form-control-label" %>
+                <%= f.text_field :first_name, class: "form-control", autofocus: true %>
+              </div>
+              <div class="field">
+                <%= f.label :last_name, class: "col-lg-3 col-form-label form-control-label" %>
+                <%= f.text_field :last_name, class: "form-control" %>
+              </div>
+              <div class="field">
+                <%= f.label :username %><br/>
+                <%= f.text_field :username, class: "form-control" %>
+              </div>
+
+              <div class="field">
+                <%= f.label :email, class: "col-lg-3 col-form-label form-control-label" %>
+                <%= f.email_field :email, class: "form-control" %>
+              </div>
+
+              <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                  <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+              <% end %>
+
+              <div class="field">
+                <%= f.label :password, class: "col-lg-3 col-form-label form-control-label" %>
+                <i>(leave blank if you don't want to change it)</i>
+                <%= f.password_field :password, class: "form-control", autocomplete: "off" %>
+              </div>
+
+              <div class="field">
+                <%= f.label :password_confirmation, class: "col-lg-3 col-form-label form-control-label" %>
+                <%= f.password_field :password_confirmation, class: "form-control", autocomplete: "off" %>
+              </div>
+
+              <div class="field">
+                <%= f.label :current_password, class: "col-lg-3 col-form-label form-control-label" %>
+                <i>(we need your current password to confirm your changes)</i>
+                <%= f.password_field :current_password, class: "form-control", autocomplete: "off" %>
+              </div>
+
+              <div class="actions">
+                <input type="reset" class="btn btn-secondary" value="Cancel">
+                <%= f.submit "Update", class: "btn btn-secondary" %>
+              </div>
+          <% end %>
+          <p><%= button_to "Delete my account", registration_path(resource_name), data: {confirm: "Are you sure?"}, method: :delete, class: "btn" %></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 pull-lg-8 text-xs-center">
+      <img src="//placehold.it/150" class="m-x-auto img-fluid img-circle" alt="avatar">
+      <h6 class="m-t-2">Upload a different photo</h6>
+      <label class="custom-file">
+        <input type="file" id="file" class="custom-file-input">
+        <span class="custom-file-control">Choose file</span>
+      </label>
+    </div>
+    <div class="col-lg-8 push-lg-12">
+      <% current_user.friendships.each do |user_friend| %>
+      <li class="list-group-item">
+        <div class="col-xs-12 col-sm-3">
+          <img src="http://api.randomuser.me/portraits/men/1.jpg" alt="Scott Stevens" class="img-fluid rounded-circle"/>
+        </div>
+        <div class="col-xs-12 col-sm-9">
+          <span class="name"><a href="/user/index?id=<%= user_friend.friend.id %>"><%= user_friend.friend.name %></a></span><br/>
+          <span class="fa fa-star text-muted c-info" data-toggle="tooltip"></span>
+          <span class="visible-xs"> <span class="text-muted">Rating: <%= user_friend.friend.rating %></span><br/></span>
+          <span class="fa fa-comment text-muted c-info" data-toggle="tooltip"></span>
+          <span class="visible-xs"> <span class="text-muted">Posts: <%= user_friend.friend.number_of_posts %></span><br/></span>
+          <span class="fa fa-envelope text-muted c-info" data-toggle="tooltip" title="scott.stevens@example.com"></span>
+          <span class="visible-xs"> <span class="text-muted"><%= user_friend.friend.email %></span><br/></span>
+          <form id="remove_friend<%= user_friend.friend.id %>" method="get" action="/remove_friend/<%= user_friend.friend.id %>">
+            <a href="javascript:document.getElementById('remove_friend<%= user_friend.friend.id %>').submit();"><i class="fa fa-minus"></i>Remove
+              Friend</a>
+          </form>
+        </div>
+        <div class="clearfix"></div>
+      </li>
+      <% end %>
+    </div>
+  </div>
+</div>
+<hr>
