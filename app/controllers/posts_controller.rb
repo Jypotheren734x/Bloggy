@@ -1,4 +1,4 @@
-class PostController < ApplicationController
+class PostsController < ApplicationController
   def index
     @post = Post.find(params[:id])
   end
@@ -17,9 +17,10 @@ class PostController < ApplicationController
 
   def create
     @post = current_user.posts.new(post_params)
-    if @post.save
-      current_user.update(number_of_posts: current_user.number_of_posts + 1)
-      redirect_to post_index_path+"?id="+@post.id.to_s
+    current_user.update(number_of_posts: current_user.number_of_posts + 1) if @post.save
+    respond_to do |format|
+      format.html { redirect_to request.referrer }
+      format.js {}
     end
   end
 
@@ -31,7 +32,7 @@ class PostController < ApplicationController
     @post = Post.find(params[:id])
     if @post.destroy
       current_user.update(number_of_posts: current_user.number_of_posts + 1)
-      redirect_to user_index_path+"?id="+current_user.id.to_s
+      redirect_to user_path(current_user)
     end
   end
 

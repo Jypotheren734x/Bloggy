@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  get 'comment/new'
+  get 'comments/new'
 
-  get 'comment/create'
+  get 'comments/create'
 
   get 'friend/add_friend'
 
@@ -13,11 +13,11 @@ Rails.application.routes.draw do
 
   get 'home/search'
 
-  resources :post do
+  resources :posts do
     resources :comments
   end
 
-  resources :comment do
+  resources :comments do
     resources :comments
   end
 

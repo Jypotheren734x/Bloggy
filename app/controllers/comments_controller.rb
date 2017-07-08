@@ -1,4 +1,4 @@
-class CommentController < ApplicationController
+class CommentsController < ApplicationController
   before_action :find_commentable
 
   def new
@@ -9,16 +9,16 @@ class CommentController < ApplicationController
     @comment = @commentable.comments.new comment_params
 
     if @comment.save
-      redirect_to :back, notice: 'Your comment was successfully posted!'
+      redirect_to :back, notice: 'Your comments was successfully posted!'
     else
-      redirect_to :back, notice: "Your comment wasn't posted!"
+      redirect_to :back, notice: "Your comments wasn't posted!"
     end
   end
 
   private
 
   def comment_params
-    params.require(:comment).permit(:body)
+    params.require(:comments).permit(:body)
   end
 
   def find_commentable

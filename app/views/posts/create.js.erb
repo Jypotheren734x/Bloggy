@@ -1,0 +1,11 @@
+$('#form-id').submit(function(){
+    $.ajax({
+        type: this.method,
+        url: this.action,
+        data: $(this).serialize(),
+        success: function(){
+            $('<div class="card"><div class="card-block"><h4 class="card-title"><%= link_to @post.title, post_path(@post)%>By:<%= link_to @post.user.full_name, user_path(@post.user), method: :get %></h4><p class="card-text"><%= @post.content.html_safe %></p></div><div class="card-footer"><p class="card-text"><small class="text-muted">Last updated: <%= @post.updated_at %></small></p></div></div>').appendTo("#post_list");
+        }
+    });
+    return false;
+});

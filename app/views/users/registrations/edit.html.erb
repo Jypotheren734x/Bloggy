@@ -84,9 +84,9 @@
               <div class="card">
                 <div class="card-block">
                   <div class="close">
-                    <%= link_to "Delete Post", post_destroy_path + "?id=" + post.id.to_s, method: :delete, class: "fa fa-minus" %>
+                    <%= link_to "Delete Post", post_path(post), method: :delete, class: "fa fa-minus" %>
                   </div>
-                  <h4 class="card-title"><%= link_to post.title, post_index_path + "?id=" + post.id.to_s, method: :get %></h4>
+                  <h4 class="card-title"><%= link_to post.title, post_path(post), method: :get %></h4>
                   <p class="card-text"><%= post.content.html_safe %></p>
                 </div>
                 <div class="card-footer">
