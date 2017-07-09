@@ -15,7 +15,7 @@ class PostsController < ApplicationController
     @post = current_user.posts.new(post_params)
     current_user.update(number_of_posts: current_user.number_of_posts + 1) if @post.save
     respond_to do |format|
-      format.html { redirect_to request.referrer }
+      format.html {redirect_to request.referrer}
       format.js {}
     end
   end
@@ -24,7 +24,7 @@ class PostsController < ApplicationController
     @post = current_user.posts.new(post_params)
     current_user.update(number_of_posts: current_user.number_of_posts + 1) if @post.save
     respond_to do |format|
-      format.html { redirect_to request.referrer }
+      format.html {redirect_to request.referrer}
       format.js {}
     end
   end

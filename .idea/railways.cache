@@ -1,8 +1,4 @@
                   Prefix Verb   URI Pattern                                       Controller#Action
-            comments_new GET    /comments/new(.:format)                           comments#new
-         comments_create GET    /comments/create(.:format)                        comments#create
-       friend_add_friend GET    /friend/add_friend(.:format)                      friend#add_friend
-    friend_remove_friend GET    /friend/remove_friend(.:format)                   friend#remove_friend
                edit_user GET    /users/:id/edit(.:format)                         users#edit
                     user GET    /users/:id(.:format)                              users#show
                          PATCH  /users/:id(.:format)                              users#update
@@ -56,9 +52,6 @@ cancel_user_registration GET    /users/register/cancel(.:format)                
                          PUT    /users/register(.:format)                         users/registrations#update
                          DELETE /users/register(.:format)                         users/registrations#destroy
                          POST   /users/register(.:format)                         users/registrations#create
-   new_user_confirmation GET    /users/verification/new(.:format)                 devise/confirmations#new
-       user_confirmation GET    /users/verification(.:format)                     devise/confirmations#show
-                         POST   /users/verification(.:format)                     devise/confirmations#create
                    login GET    /login(.:format)                                  users/sessions#new
                   logout GET    /logout(.:format)                                 users/sessions#destroy
                     root GET    /                                                 home#index

@@ -32,7 +32,7 @@
               <a href="" class="tag tag-default tag-pill">bootstrap</a>
               <a href="" class="tag tag-default tag-pill">responsive-design</a>
               <hr>
-              <span class="tag tag-primary"><i class="fa fa-user"></i> Followers: <%= @user.followers %></span>
+              <span class="tag tag-primary"><i class="fa fa-user"></i> Followers: <%= @user.number_of_followers %></span>
               <span class="tag tag-danger"><i class="fa fa-eye"></i> Views: <%= @user.views %></span>
               <span class="tag tag-danger"><i class="fa fa-file-text"></i> Posts: <%= @user.number_of_posts %></span>
             </div>
@@ -97,7 +97,9 @@
         <input type="file" id="file" class="custom-file-input">
         <span class="custom-file-control">Choose file</span>
       </label>
-      <%= link_to "Follow",  %>
+      <p>
+        <%= link_to "Add Friend", friendships_path(friend_id: @user), method: :post %>
+      </p>
     </div>
   </div>
 </div>

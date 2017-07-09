@@ -14,7 +14,7 @@
       title = $data[3].value
       content = $data[4].value
       console.log name, title, content
-      $post = '<div class="card"><div class="card-block"><h4 class="card-title">' + title + ' By:' + name + '</h4><p class="card-text">' + content + '</p></div><div class="card-footer"><p class="card-text"><small class="text-muted">Last updated: <%= post.updated_at %></small></p></div></div>'
+      $post = '<div class="card"><div class="card-block"><h4 class="card-title">' + title + ' By:' + name + '</h4><p class="card-text">' + content + '</p></div><div class="card-footer"><p class="card-text"><small class="text-muted">Last updated: Now</small></p></div></div>'
       $('#post').after $post
       return
     return

@@ -1,11 +1,4 @@
 Rails.application.routes.draw do
-  get 'comments/new'
-
-  get 'comments/create'
-
-  get 'friend/add_friend'
-
-  get 'friend/remove_friend'
 
   resources :users, only: [:show, :edit, :update]
 

@@ -38,7 +38,7 @@
               <a href="" class="tag tag-default tag-pill">bootstrap</a>
               <a href="" class="tag tag-default tag-pill">responsive-design</a>
               <hr>
-              <span class="tag tag-primary"><i class="fa fa-user"></i> Followers: <%= @user.followers %></span>
+              <span class="tag tag-primary"><i class="fa fa-user"></i> Followers: <%= @user.number_of_followers %></span>
               <span class="tag tag-danger"><i class="fa fa-eye"></i> Views: <%= @user.views %></span>
               <span class="tag tag-danger"><i class="fa fa-file-text"></i> Posts: <%= @user.number_of_posts %></span>
             </div>
@@ -105,30 +105,15 @@
           </div>
           <table class="table table-hover table-striped">
             <tbody>
-            <tr>
-              <td>
-                <span class="pull-xs-right font-weight-bold">3 hrs ago</span> Here is your a link to the latest summary
-                report from the..
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <span class="pull-xs-right font-weight-bold">Yesterday</span> There has been a request on your account
-                since that was..
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <span class="pull-xs-right font-weight-bold">9/10</span> Porttitor vitae ultrices quis, dapibus id
-                dolor. Morbi venenatis lacinia rhoncus.
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <span class="pull-xs-right font-weight-bold">9/4</span> Vestibulum tincidunt ullamcorper eros eget
-                luctus.
-              </td>
-            </tr>
+            <% @user.pending_friends.each do |request| %>
+                <tr>
+                  <td>
+                    <%= request.user.full_name %>
+                    <%= link_to "Accept", friendship_path(id: request.id), method: "put" %>
+                    <%= link_to "Decline", friendship_path(id: request.id), method: :delete %>
+                  </td>
+                </tr>
+            <% end %>
             </tbody>
           </table>
         </div>
@@ -136,38 +121,38 @@
           <h4 class="m-y-2">Edit Profile</h4>
           <%= form_with(model: @user) do |f| %>
               <div class="field">
-                <%= f.label :first_name %><br />
+                <%= f.label :first_name %><br/>
                 <%= f.text_field :first_name, autofocus: true %>
               </div>
               <div class="field">
-                <%= f.label :last_name %><br />
+                <%= f.label :last_name %><br/>
                 <%= f.text_field :last_name %>
               </div>
               <div class="field">
-                <%= f.label :age %><br />
-                <%= f.text_field :age, type: "number"%>
+                <%= f.label :age %><br/>
+                <%= f.text_field :age, type: "number" %>
               </div>
               <div class="field">
-                <%= f.label :email %><br />
+                <%= f.label :email %><br/>
                 <%= f.email_field :email %>
               </div>
 
               <div class="field">
-                <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+                <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br/>
                 <%= f.password_field :password, autocomplete: "off" %>
                 <% if @minimum_password_length %>
-                    <br />
+                    <br/>
                     <em><%= @minimum_password_length %> characters minimum</em>
                 <% end %>
               </div>
 
               <div class="field">
-                <%= f.label :password_confirmation %><br />
+                <%= f.label :password_confirmation %><br/>
                 <%= f.password_field :password_confirmation, autocomplete: "off" %>
               </div>
 
               <div class="field">
-                <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+                <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br/>
                 <%= f.password_field :current_password, autocomplete: "off" %>
               </div>
 
@@ -187,28 +172,43 @@
         <span class="custom-file-control">Choose file</span>
       </label>
     </div>
-    <div class="col-lg-8 push-lg-12">
-      <% @user.friendships.each do |user_friend| %>
-          <li class="list-group-item">
-            <div class="col-xs-12 col-sm-3">
-              <img src="http://api.randomuser.me/portraits/men/1.jpg" alt="Scott Stevens" class="img-fluid rounded-circle"/>
+    <div class="col-lg-4 push-lg-12">
+      <div class="card">
+        <div class="card-header c-list">
+          <span class="title">Friends</span>
+          <ul class="pull-right c-controls">
+            <li>
+              <a href="#" class="hide-search" data-command="toggle-search"><i class="fa fa-search"></i></a>
+            </li>
+          </ul>
+        </div>
+        <div class="row" style="display: none;">
+          <div class="col-12">
+            <div class="input-group c-search">
+              <input type="text" class="form-control" id="contact-list-search">
+              <span class="input-group-btn"><button class="btn btn-default" type="button"><span class="fa fa-search text-muted"></span></button></span>
             </div>
-            <div class="col-xs-12 col-sm-9">
-              <span class="name"><a href="/user/index?id=<%= user_friend.friend.id %>"><%= user_friend.friend.name %></a></span><br/>
-              <span class="fa fa-star text-muted c-info" data-toggle="tooltip"></span>
-              <span class="visible-xs"> <span class="text-muted">Rating: <%= user_friend.friend.rating %></span><br/></span>
-              <span class="fa fa-comment text-muted c-info" data-toggle="tooltip"></span>
-              <span class="visible-xs"> <span class="text-muted">Posts: <%= user_friend.friend.number_of_posts %></span><br/></span>
-              <span class="fa fa-envelope text-muted c-info" data-toggle="tooltip" title="scott.stevens@example.com"></span>
-              <span class="visible-xs"> <span class="text-muted"><%= user_friend.friend.email %></span><br/></span>
-              <form id="remove_friend<%= user_friend.friend.id %>" method="get" action="/remove_friend/<%= user_friend.friend.id %>">
-                <a href="javascript:document.getElementById('remove_friend<%= user_friend.friend.id %>').submit();"><i class="fa fa-minus"></i>Remove
-                  Friend</a>
-              </form>
-            </div>
-            <div class="clearfix"></div>
-          </li>
-      <% end %>
+          </div>
+        </div>
+        <ul class="list-group" id="contact-list">
+        <% @user.friendships.each do |user_friend| %>
+            <li class="list-group-item">
+              <div class="col-xs-12 col-sm-3">
+                <img src="http://api.randomuser.me/portraits/men/1.jpg" alt="Scott Stevens" class="img-fluid rounded-circle"/>
+              </div>
+              <div class="col-xs-12 col-sm-9">
+                <span class="name"><a href="/user/<%= user_friend.user.id %>"><%= user_friend.user.full_name %></a></span><br/>
+                <span class="fa fa-star text-muted c-info" data-toggle="tooltip"></span>
+                <span class="visible-xs"> <span class="text-muted">Rating: <%= user_friend.user.views %></span><br/></span>
+                <span class="fa fa-comment text-muted c-info" data-toggle="tooltip"></span>
+                <span class="visible-xs"> <span class="text-muted">Posts: <%= user_friend.user.number_of_posts %></span><br/></span>
+                <span class="fa fa-envelope text-muted c-info" data-toggle="tooltip" title="scott.stevens@example.com"></span>
+                <span class="visible-xs"> <span class="text-muted"><%= user_friend.user.email %></span><br/></span>
+              </div>
+            </li>
+        <% end %>
+        </ul>
+      </div>
     </div>
   </div>
 </div>

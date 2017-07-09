@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170708162005) do
+ActiveRecord::Schema.define(version: 20170709211857) do
 
   create_table "comments", force: :cascade do |t|
     t.text "body"
@@ -30,11 +30,22 @@ ActiveRecord::Schema.define(version: 20170708162005) do
     t.index ["user_id"], name: "index_followers_on_user_id"
   end
 
-  create_table "friendships", id: false, force: :cascade do |t|
+  create_table "friend_requests", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "friend_user_id"
-    t.index ["friend_user_id", "user_id"], name: "index_friendships_on_friend_user_id_and_user_id", unique: true
-    t.index ["user_id", "friend_user_id"], name: "index_friendships_on_user_id_and_friend_user_id", unique: true
+    t.integer "friend_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["friend_id"], name: "index_friend_requests_on_friend_id"
+    t.index ["user_id"], name: "index_friend_requests_on_user_id"
+  end
+
+  create_table "friendships", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "friend_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["friend_id"], name: "index_friendships_on_friend_id"
+    t.index ["user_id"], name: "index_friendships_on_user_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -68,7 +79,7 @@ ActiveRecord::Schema.define(version: 20170708162005) do
     t.string "last_name"
     t.integer "age"
     t.integer "number_of_posts"
-    t.integer "followers"
+    t.integer "number_of_followers"
     t.integer "views"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true

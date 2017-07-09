@@ -10,11 +10,11 @@
                 <img src="http://api.randomuser.me/portraits/men/1.jpg" alt="Scott Stevens" class="img-fluid rounded-circle"/>
               </div>
               <div class="col-xs-12 col-sm-9">
-                <span class="name"><a href="/user/<%= user.id %>"><%= user.full_name %></a></span><br/>
+                <span class="name"><%= link_to user.full_name, user_path(user) %></a></span><br/>
                 <span class="fa fa-envelope text-muted c-info" data-toggle="tooltip"></span>
                 <span class="visible-xs"> <span class="text-muted"><%= user.email %></span><br/></span>
                 <span class="fa fa-user text-muted c-info" data-toggle="tooltip"></span>
-                <span class="visible-xs"> <span class="text-muted">Followers: <%= user.followers %></span><br/></span>
+                <span class="visible-xs"> <span class="text-muted">Followers: <%= user.number_of_followers %></span><br/></span>
                 <span class="fa fa-eye text-muted c-info" data-toggle="tooltip"></span>
                 <span class="visible-xs"> <span class="text-muted">Views: <%= user.views %></span><br/></span>
                 <span class="fa fa-file-text text-muted c-info" data-toggle="tooltip"></span>
@@ -30,19 +30,19 @@
         <% end %>
       </ul>
       <h1>Posts</h1>
-        <% @results.each do |post| %>
-            <div class="card">
-              <div class="card-block">
-                <h4 class="card-title"><%= link_to post.title, post_path(post), method: :get %></h4>
-                <p class="card-text"><%= post.content.html_safe %></p>
-              </div>
-              <div class="card-footer">
-                <p class="card-text">
-                  <small class="text-muted">Last updated: <%= post.updated_at %></small>
-                </p>
-              </div>
+      <% @results.each do |post| %>
+          <div class="card">
+            <div class="card-block">
+              <h4 class="card-title"><%= link_to post.title, post_path(post), method: :get %></h4>
+              <p class="card-text"><%= post.content.html_safe %></p>
             </div>
-        <% end %>
+            <div class="card-footer">
+              <p class="card-text">
+                <small class="text-muted">Last updated: <%= post.updated_at %></small>
+              </p>
+            </div>
+          </div>
+      <% end %>
     </div>
   </div>
 </div>

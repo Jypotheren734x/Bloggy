@@ -14,7 +14,7 @@ Rails.application.configure do
   config.consider_all_requests_local = false
   config.action_controller.perform_caching = true
 
-  config.action_mailer.default_url_options = { :host => 'https://lit-cliffs-19444.herokuapp.com' }
+  config.action_mailer.default_url_options = {:host => 'https://lit-cliffs-19444.herokuapp.com'}
 
   # Attempt to read encrypted secrets from `config/secrets.yml.enc`.
   # Requires an encryption key in `ENV["RAILS_MASTER_KEY"]` or
