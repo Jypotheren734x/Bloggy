@@ -9,9 +9,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    params[:user][:number_of_posts] = 0
-    params[:user][:views] = 0
-    params[:user][:followers] = 0
     super
   end
 

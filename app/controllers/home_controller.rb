@@ -2,7 +2,7 @@ class HomeController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @recent = Post.all
+    @recent = Post.all.reverse
     @post = Post.new
   end
 

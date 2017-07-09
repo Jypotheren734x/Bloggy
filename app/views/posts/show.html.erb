@@ -32,12 +32,13 @@
         <!-- Comments Form -->
         <div class="well">
           <h4>Leave a Comment:</h4>
-          <form id="comment-form" role="form" action="/post/index?id=<%= @post.id %>" method="post">
-            <div class="form-group">
-              <textarea name="content" class="form-control" rows="3" form="comment-form"></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </form>
+          <%= form_with(model: [@post, Comment.new], id: "new-post-comment") do |f|  %>
+              <div class="form-group">
+                <%= hidden_field_tag :user_full_name, current_user.full_name %>
+                <%= f.text_area :body, class: "form-control" %>
+              </div>
+              <button id="new_post" type="submit" name="say" class="btn btn-primary"><i class="fa fa-reply"></i> Submit</button>
+          <% end %>
         </div>
 
         <hr>
@@ -49,29 +50,7 @@
           <div class="row">
             <div class="comments col-md-9" id="comments">
               <h3 class="mb-2">Comments</h3>
-              <% @post.comments.each do |comment| %>
-                  <div class="comment mb-2 row">
-                    <div class="comment-avatar col-md-1 col-sm-2 text-center pr-1">
-                      <a href=""><img class="mx-auto rounded-circle img-fluid" src="http://demos.themes.guide/bodeo/assets/images/users/m103.jpg" alt="avatar"></a>
-                    </div>
-                    <div class="comment-content col-md-11 col-sm-10">
-                      <h6 class="small comment-meta"><a href="#"><%= comment.user.username %></a> <%= comment.date_created %></h6>
-                      <div class="comment-body">
-                        <p>
-                          <%= comment.content %>
-                          <br>
-                          <a href="#sub-comment-form" class="text-right small" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample"><i class="ion-reply"></i> Reply</a>
-                        </p>
-                        <form id="sub-comment-form" role="form" action="/post/<%= @post.id %>/<%= comment.id %>" method="post" class="collapse">
-                          <div class="form-group">
-                            <textarea name="content" class="form-control" rows="3" form="sub-comment-form"></textarea>
-                          </div>
-                          <button type="submit" class="btn btn-primary">Submit</button>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-              <% end %>
+                <%= render(partial: 'comments/comment', collection: @post.comments) %>
             </div>
           </div>
         </div>

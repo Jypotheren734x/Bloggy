@@ -3,14 +3,10 @@
          comments_create GET    /comments/create(.:format)                        comments#create
        friend_add_friend GET    /friend/add_friend(.:format)                      friend#add_friend
     friend_remove_friend GET    /friend/remove_friend(.:format)                   friend#remove_friend
-              user_index GET    /user(.:format)                                   user#index
-                         POST   /user(.:format)                                   user#create
-                new_user GET    /user/new(.:format)                               user#new
-               edit_user GET    /user/:id/edit(.:format)                          user#edit
-                    user GET    /user/:id(.:format)                               user#show
-                         PATCH  /user/:id(.:format)                               user#update
-                         PUT    /user/:id(.:format)                               user#update
-                         DELETE /user/:id(.:format)                               user#destroy
+               edit_user GET    /users/:id/edit(.:format)                         users#edit
+                    user GET    /users/:id(.:format)                              users#show
+                         PATCH  /users/:id(.:format)                              users#update
+                         PUT    /users/:id(.:format)                              users#update
               home_index GET    /home/index(.:format)                             home#index
              home_search GET    /home/search(.:format)                            home#search
            post_comments GET    /posts/:post_id/comments(.:format)                comments#index
@@ -45,9 +41,9 @@
                          PATCH  /comments/:id(.:format)                           comments#update
                          PUT    /comments/:id(.:format)                           comments#update
                          DELETE /comments/:id(.:format)                           comments#destroy
-        new_user_session GET    /users/login(.:format)                            users/sessions#new
-            user_session POST   /users/login(.:format)                            users/sessions#create
-    destroy_user_session DELETE /users/logout(.:format)                           users/sessions#destroy
+        new_user_session GET    /users/sign_in(.:format)                          users/sessions#new
+            user_session POST   /users/sign_in(.:format)                          users/sessions#create
+    destroy_user_session DELETE /users/sign_out(.:format)                         users/sessions#destroy
        new_user_password GET    /users/secret/new(.:format)                       devise/passwords#new
       edit_user_password GET    /users/secret/edit(.:format)                      devise/passwords#edit
            user_password PATCH  /users/secret(.:format)                           devise/passwords#update
@@ -63,4 +59,6 @@ cancel_user_registration GET    /users/register/cancel(.:format)                
    new_user_confirmation GET    /users/verification/new(.:format)                 devise/confirmations#new
        user_confirmation GET    /users/verification(.:format)                     devise/confirmations#show
                          POST   /users/verification(.:format)                     devise/confirmations#create
+                   login GET    /login(.:format)                                  users/sessions#new
+                  logout GET    /logout(.:format)                                 users/sessions#destroy
                     root GET    /                                                 home#index

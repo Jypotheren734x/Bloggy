@@ -19,13 +19,14 @@
         <!-- commentsment box -->
         <div class="card">
           <h4><i class="fa fa-paper-plane-o"></i> New Post:</h4>
-          <%= form_for(@post) do |f|  %>
+          <%= form_with(model: @post, id: 'post') do |f|  %>
               <div class="form-group">
+                <%= hidden_field_tag :user_full_name, current_user.full_name %>
                 <%= f.label :title %>
                 <%= f.text_field :title %>
                 <%= f.text_area :content, class: "form-control" %>
               </div>
-              <button type="submit" name="say" value="" class="btn btn-primary"><i class="fa fa-reply"></i> Submit</button>
+              <button id="new_post" type="submit" name="say" value="<%= current_user %>" class="btn btn-primary"><i class="fa fa-reply"></i> Submit</button>
           <% end %>
         </div>
     <% @recent.each do |post| %>

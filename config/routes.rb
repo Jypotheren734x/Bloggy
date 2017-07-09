@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   get 'friend/remove_friend'
 
-  resources :user
+  resources :users, only: [:show, :edit, :update]
 
   get 'home/index'
 
@@ -26,13 +26,16 @@ Rails.application.routes.draw do
       confirmation: 'users/confirmations',
       registrations: 'users/registrations'
   }, path: 'users', path_names: {
-      sign_in: 'login',
-      sign_out: 'logout',
       password: 'secret',
       confirmation: 'verification',
       registration: 'register',
       sign_up: 'sign_up'
   }
+
+  devise_scope :user do
+    get 'login', to: 'users/sessions#new'
+    get 'logout', to: 'users/sessions#destroy'
+  end
 
   root to: "home#index"
 

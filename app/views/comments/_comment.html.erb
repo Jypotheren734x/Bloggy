@@ -1,0 +1,23 @@
+<div class="comment mb-2 row">
+  <div class="comment-avatar col-md-1 col-sm-2 text-center pr-1">
+    <a href=""><img class="mx-auto rounded-circle img-fluid" src="http://demos.themes.guide/bodeo/assets/images/users/m103.jpg" alt="avatar"></a>
+  </div>
+  <div class="comment-content col-md-11 col-sm-10">
+    <h6 class="small comment-meta"><a href="#"><%= comment.user.full_name %></a> <%= comment.created_at %></h6>
+    <div class="comment-body">
+      <p>
+        <%= comment.body %>
+        <br>
+        <a href="#sub-comment-form<%= comment.id %>" class="text-right small" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample"><i class="ion-reply"></i> Reply</a>
+      </p>
+      <%= form_with(model: [comment, Comment.new], class: "collapse", id: "sub-comment-form"+comment.id.to_s) do |f|  %>
+          <div class="form-group">
+            <%= hidden_field_tag :user_full_name, current_user.full_name %>
+            <%= f.text_area :body, class: "form-control" %>
+          </div>
+          <button id="new_post" type="submit" name="say" class="btn btn-primary"><i class="fa fa-reply"></i> Submit</button>
+      <% end %>
+      <%= render partial: 'comments/comment', collection: comment.comments %>
+    </div>
+  </div>
+</div>
