@@ -2,42 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a32bd73f-f6ca-4586-9af4-3abc2b0670f5" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/jquery.searchable.js" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/dataSources/e39fcd22-5b4d-4ceb-91bb-d2b1d9d72478.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/db/migrate/20170708034124_create_friendship_table.rb" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/03c00212-23cc-43b2-81d7-b7ae409073bc/_metadata_/metadata" afterPath="$PROJECT_DIR$/.idea/dataSources/03c00212-23cc-43b2-81d7-b7ae409073bc/_metadata_/metadata" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/03c00212-23cc-43b2-81d7-b7ae409073bc/_metadata_/metadata.keystream" afterPath="$PROJECT_DIR$/.idea/dataSources/03c00212-23cc-43b2-81d7-b7ae409073bc/_metadata_/metadata.keystream" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/03c00212-23cc-43b2-81d7-b7ae409073bc/_metadata_/metadata.keystream.len" afterPath="$PROJECT_DIR$/.idea/dataSources/03c00212-23cc-43b2-81d7-b7ae409073bc/_metadata_/metadata.keystream.len" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/03c00212-23cc-43b2-81d7-b7ae409073bc/_metadata_/metadata.len" afterPath="$PROJECT_DIR$/.idea/dataSources/03c00212-23cc-43b2-81d7-b7ae409073bc/_metadata_/metadata.len" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/03c00212-23cc-43b2-81d7-b7ae409073bc/_metadata_/metadata_i" afterPath="$PROJECT_DIR$/.idea/dataSources/03c00212-23cc-43b2-81d7-b7ae409073bc/_metadata_/metadata_i" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/03c00212-23cc-43b2-81d7-b7ae409073bc/_metadata_/metadata_i.len" afterPath="$PROJECT_DIR$/.idea/dataSources/03c00212-23cc-43b2-81d7-b7ae409073bc/_metadata_/metadata_i.len" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/d397a8d2-dc29-4947-a43d-035755ef9a2a/_metadata_/metadata" afterPath="$PROJECT_DIR$/.idea/dataSources/d397a8d2-dc29-4947-a43d-035755ef9a2a/_metadata_/metadata" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/d397a8d2-dc29-4947-a43d-035755ef9a2a/_metadata_/metadata.values.at" afterPath="$PROJECT_DIR$/.idea/dataSources/d397a8d2-dc29-4947-a43d-035755ef9a2a/_metadata_/metadata.values.at" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/d397a8d2-dc29-4947-a43d-035755ef9a2a.xml" afterPath="$PROJECT_DIR$/.idea/dataSources/d397a8d2-dc29-4947-a43d-035755ef9a2a.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/railways.cache" afterPath="$PROJECT_DIR$/.idea/railways.cache" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources/03c00212-23cc-43b2-81d7-b7ae409073bc/_metadata_/metadata.values.at" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources/03c00212-23cc-43b2-81d7-b7ae409073bc/storage.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/helpers/friend_requests_helper.rb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/helpers/friends_helper.rb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/helpers/friendships_helper.rb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db/migrate/20170709211857_create_friendships.rb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/controllers/friend_requests_controller_test.rb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/controllers/friends_controller_test.rb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/controllers/friendships_controller_test.rb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/fixtures/friend_requests.yml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/fixtures/friendships.yml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/models/friend_request_test.rb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/models/friendship_test.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/application.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/application.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/posts.coffee" afterPath="$PROJECT_DIR$/app/assets/javascripts/posts.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/users.scss" afterPath="$PROJECT_DIR$/app/assets/stylesheets/users.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/posts_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/posts_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/users/registrations_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/users/registrations_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/users_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/users_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/post.rb" afterPath="$PROJECT_DIR$/app/models/post.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/user.rb" afterPath="$PROJECT_DIR$/app/models/user.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/comments/_comment.html.erb" afterPath="$PROJECT_DIR$/app/views/comments/_comment.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/home/index.html.erb" afterPath="$PROJECT_DIR$/app/views/home/index.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/home/search.html.erb" afterPath="$PROJECT_DIR$/app/views/home/search.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/application.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/posts/show.html.erb" afterPath="$PROJECT_DIR$/app/views/posts/show.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/edit.html.erb" afterPath="$PROJECT_DIR$/app/views/users/edit.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/registrations/edit.html.erb" afterPath="$PROJECT_DIR$/app/views/users/registrations/edit.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/show.html.erb" afterPath="$PROJECT_DIR$/app/views/users/show.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/environments/development.rb" afterPath="$PROJECT_DIR$/config/environments/development.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/environments/production.rb" afterPath="$PROJECT_DIR$/config/environments/production.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/routes.rb" afterPath="$PROJECT_DIR$/config/routes.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/migrate/20170707160726_add_number_columns_to_users.rb" afterPath="$PROJECT_DIR$/db/migrate/20170707160726_add_number_columns_to_users.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/schema.rb" afterPath="$PROJECT_DIR$/db/schema.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/restful_routing.rb" afterPath="$PROJECT_DIR$/restful_routing.rb" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -111,8 +89,8 @@
       <file leaf-file-name="user.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/models/user.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="15" column="48" lean-forward="true" selection-start-line="15" selection-start-column="48" selection-end-line="15" selection-end-column="48" />
+            <state relative-caret-position="208">
+              <caret line="8" column="20" lean-forward="true" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -1090,7 +1068,7 @@
       <workItem from="1499621818986" duration="3375000" />
       <workItem from="1499627051434" duration="80000" />
       <workItem from="1499627625817" duration="7564000" />
-      <workItem from="1499635375623" duration="3000" />
+      <workItem from="1499635375623" duration="34000" />
     </task>
     <task id="LOCAL-00001" summary="Update">
       <created>1499471778958</created>
@@ -1148,11 +1126,18 @@
       <option name="project" value="LOCAL" />
       <updated>1499576294941</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Update">
+      <created>1499635382521</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1499635382521</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="98625000" />
+    <option name="totallyTimeSpent" value="98656000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1165,9 +1150,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1916" y="0" width="3848" height="2134" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.028481012" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.09994726" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296593" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296593" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -1318,6 +1302,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="416">
           <caret line="16" column="247" lean-forward="false" selection-start-line="16" selection-start-column="247" selection-end-line="16" selection-end-column="247" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1332,6 +1317,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="312">
           <caret line="12" column="81" lean-forward="false" selection-start-line="12" selection-start-column="81" selection-end-line="12" selection-end-column="81" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1381,6 +1367,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="26">
           <caret line="1" column="11" lean-forward="true" selection-start-line="1" selection-start-column="11" selection-end-line="1" selection-end-column="11" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1423,6 +1410,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="806">
           <caret line="31" column="32" lean-forward="true" selection-start-line="31" selection-start-column="32" selection-end-line="31" selection-end-column="32" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1437,6 +1425,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="286">
           <caret line="11" column="1" lean-forward="true" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1488,6 +1477,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="26">
           <caret line="1" column="12" lean-forward="true" selection-start-line="1" selection-start-column="12" selection-end-line="7" selection-end-column="7" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1497,6 +1487,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="26">
           <caret line="1" column="12" lean-forward="false" selection-start-line="1" selection-start-column="12" selection-end-line="1" selection-end-column="12" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1504,6 +1495,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="26">
           <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1517,8 +1509,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/user.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="15" column="48" lean-forward="true" selection-start-line="15" selection-start-column="48" selection-end-line="15" selection-end-column="48" />
+        <state relative-caret-position="208">
+          <caret line="8" column="20" lean-forward="true" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
           <folding />
         </state>
       </provider>
