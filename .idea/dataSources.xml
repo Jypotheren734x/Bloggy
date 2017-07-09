@@ -10,11 +10,11 @@
         <property name="enable_load_extension" value="true" />
       </driver-properties>
     </data-source>
-    <data-source source="LOCAL" name="dauffe29bgt047@ec2-107-21-205-25.compute-1.amazonaws.com" uuid="e39fcd22-5b4d-4ceb-91bb-d2b1d9d72478">
+    <data-source source="LOCAL" name="dbbs47thd1i7t7@ec2-184-73-199-72.compute-1.amazonaws.com" uuid="03c00212-23cc-43b2-81d7-b7ae409073bc">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://ec2-107-21-205-25.compute-1.amazonaws.com:5432/dauffe29bgt047</jdbc-url>
+      <jdbc-url>jdbc:postgresql://ec2-184-73-199-72.compute-1.amazonaws.com:5432/dbbs47thd1i7t7</jdbc-url>
       <driver-properties>
         <property name="ssl" value="true" />
         <property name="sslfactory" value="org.postgresql.ssl.NonValidatingFactory" />
