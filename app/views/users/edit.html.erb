@@ -46,33 +46,20 @@
               <h4 class="m-t-2"><span class="fa fa-clock-o ion-clock pull-xs-right"></span> Recent Activity</h4>
               <table class="table table-hover table-striped">
                 <tbody>
-                <tr>
-                  <td>
-                    <strong>Abby</strong> joined ACME Project Team in <strong>`Collaboration`</strong>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <strong>Gary</strong> deleted My Board1 in <strong>`Discussions`</strong>
-                  </td>
-
-                </tr>
-                <tr>
-                  <td>
-                    <strong>Kensington</strong> deleted MyBoard3 in <strong>`Discussions`</strong>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <strong>John</strong> deleted My Board1 in <strong>`Discussions`</strong>
-                  </td>
-
-                </tr>
-                <tr>
-                  <td>
-                    <strong>Skell</strong> deleted his post Look at Why this is.. in <strong>`Discussions`</strong>
-                  </td>
-                </tr>
+                <% @user.comments.each do |comments| %>
+                    <tr>
+                      <td>
+                        <h4 class="card-title"><%= comments.body %></h4>
+                      </td>
+                    </tr>
+                <% end %>
+                <% @user.posts.each do |post| %>
+                    <tr>
+                      <td>
+                        <h4 class="card-title"><%= link_to post.title, post_path(post), method: :get %> Created at: <%= post.created_at %></h4>
+                      </td>
+                    </tr>
+                <% end %>
                 </tbody>
               </table>
             </div>
@@ -105,15 +92,6 @@
           </div>
           <table class="table table-hover table-striped">
             <tbody>
-            <% @user.pending_friends.each do |request| %>
-                <tr>
-                  <td>
-                    <%= request.user.full_name %>
-                    <%= link_to "Accept", friendship_path(id: request.id), method: "put" %>
-                    <%= link_to "Decline", friendship_path(id: request.id), method: :delete %>
-                  </td>
-                </tr>
-            <% end %>
             </tbody>
           </table>
         </div>
@@ -164,15 +142,7 @@
         </div>
       </div>
     </div>
-    <div class="col-lg-4 pull-lg-8 text-xs-center">
-      <img src="//placehold.it/150" class="m-x-auto img-fluid img-circle" alt="avatar">
-      <h6 class="m-t-2">Upload a different photo</h6>
-      <label class="custom-file">
-        <input type="file" id="file" class="custom-file-input">
-        <span class="custom-file-control">Choose file</span>
-      </label>
-    </div>
-    <div class="col-lg-4 push-lg-12">
+    <div class="col-lg-4 push-lg-4">
       <div class="card">
         <div class="card-header c-list">
           <span class="title">Friends</span>
@@ -191,24 +161,16 @@
           </div>
         </div>
         <ul class="list-group" id="contact-list">
-        <% @user.friendships.each do |user_friend| %>
-            <li class="list-group-item">
-              <div class="col-xs-12 col-sm-3">
-                <img src="http://api.randomuser.me/portraits/men/1.jpg" alt="Scott Stevens" class="img-fluid rounded-circle"/>
-              </div>
-              <div class="col-xs-12 col-sm-9">
-                <span class="name"><a href="/user/<%= user_friend.user.id %>"><%= user_friend.user.full_name %></a></span><br/>
-                <span class="fa fa-star text-muted c-info" data-toggle="tooltip"></span>
-                <span class="visible-xs"> <span class="text-muted">Rating: <%= user_friend.user.views %></span><br/></span>
-                <span class="fa fa-comment text-muted c-info" data-toggle="tooltip"></span>
-                <span class="visible-xs"> <span class="text-muted">Posts: <%= user_friend.user.number_of_posts %></span><br/></span>
-                <span class="fa fa-envelope text-muted c-info" data-toggle="tooltip" title="scott.stevens@example.com"></span>
-                <span class="visible-xs"> <span class="text-muted"><%= user_friend.user.email %></span><br/></span>
-              </div>
-            </li>
-        <% end %>
         </ul>
       </div>
+    </div>
+    <div class="col-lg-4 pull-lg-8 text-xs-center">
+      <img src="//placehold.it/150" class="m-x-auto img-fluid img-circle" alt="avatar">
+      <h6 class="m-t-2">Upload a different photo</h6>
+      <label class="custom-file">
+        <input type="file" id="file" class="custom-file-input">
+        <span class="custom-file-control">Choose file</span>
+      </label>
     </div>
   </div>
 </div>
