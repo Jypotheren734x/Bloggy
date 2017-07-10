@@ -77,7 +77,7 @@
           <% @user.posts.each do |post| %>
               <div class="card">
                 <div class="card-block">
-                  <h4 class="card-title"><%= link_to post.title, post_path + "/" + post.id.to_s, method: :get %></h4>
+                  <h4 class="card-title"><%= link_to post.title, post_path(post), method: :get %></h4>
                   <p class="card-text"><%= post.content.html_safe %></p>
                 </div>
                 <div class="card-footer">
@@ -98,7 +98,6 @@
         <span class="custom-file-control">Choose file</span>
       </label>
       <p>
-        <%= link_to "Add Friend", friendships_path(friend_id: @user), method: :post %>
       </p>
     </div>
   </div>

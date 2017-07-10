@@ -1,8 +1,4 @@
                   Prefix Verb   URI Pattern                                       Controller#Action
-               edit_user GET    /users/:id/edit(.:format)                         users#edit
-                    user GET    /users/:id(.:format)                              users#show
-                         PATCH  /users/:id(.:format)                              users#update
-                         PUT    /users/:id(.:format)                              users#update
               home_index GET    /home/index(.:format)                             home#index
              home_search GET    /home/search(.:format)                            home#search
            post_comments GET    /posts/:post_id/comments(.:format)                comments#index
@@ -40,11 +36,11 @@
         new_user_session GET    /users/sign_in(.:format)                          users/sessions#new
             user_session POST   /users/sign_in(.:format)                          users/sessions#create
     destroy_user_session DELETE /users/sign_out(.:format)                         users/sessions#destroy
-       new_user_password GET    /users/secret/new(.:format)                       devise/passwords#new
-      edit_user_password GET    /users/secret/edit(.:format)                      devise/passwords#edit
-           user_password PATCH  /users/secret(.:format)                           devise/passwords#update
-                         PUT    /users/secret(.:format)                           devise/passwords#update
-                         POST   /users/secret(.:format)                           devise/passwords#create
+       new_user_password GET    /users/password/new(.:format)                     users/passwords#new
+      edit_user_password GET    /users/password/edit(.:format)                    users/passwords#edit
+           user_password PATCH  /users/password(.:format)                         users/passwords#update
+                         PUT    /users/password(.:format)                         users/passwords#update
+                         POST   /users/password(.:format)                         users/passwords#create
 cancel_user_registration GET    /users/register/cancel(.:format)                  users/registrations#cancel
    new_user_registration GET    /users/register/sign_up(.:format)                 users/registrations#new
   edit_user_registration GET    /users/register/edit(.:format)                    users/registrations#edit
@@ -52,6 +48,13 @@ cancel_user_registration GET    /users/register/cancel(.:format)                
                          PUT    /users/register(.:format)                         users/registrations#update
                          DELETE /users/register(.:format)                         users/registrations#destroy
                          POST   /users/register(.:format)                         users/registrations#create
+   new_user_confirmation GET    /users/verification/new(.:format)                 devise/confirmations#new
+       user_confirmation GET    /users/verification(.:format)                     devise/confirmations#show
+                         POST   /users/verification(.:format)                     devise/confirmations#create
                    login GET    /login(.:format)                                  users/sessions#new
                   logout GET    /logout(.:format)                                 users/sessions#destroy
+               edit_user GET    /users/:id/edit(.:format)                         users#edit
+                    user GET    /users/:id(.:format)                              users#show
+                         PATCH  /users/:id(.:format)                              users#update
+                         PUT    /users/:id(.:format)                              users#update
                     root GET    /                                                 home#index

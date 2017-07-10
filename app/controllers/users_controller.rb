@@ -1,11 +1,9 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:show, :update]
 
   def show
     @user = User.find(params[:id])
     @user.update(views: @user.views + 1)
-    @incoming = FriendRequest.where(friend: current_user)
-    @outgoing = current_user.friend_requests
   end
 
   def edit

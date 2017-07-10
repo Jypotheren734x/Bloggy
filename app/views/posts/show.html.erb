@@ -32,7 +32,7 @@
         <!-- Comments Form -->
         <div class="well">
           <h4>Leave a Comment:</h4>
-          <%= form_with(model: [@post, Comment.new], id: "new-post-comment") do |f| %>
+          <%= form_with(model: [@post, @comment], id: "new-post-comment") do |f| %>
               <div class="form-group">
                 <%= hidden_field_tag :user_full_name, current_user.full_name %>
                 <%= f.text_area :body, class: "form-control" %>

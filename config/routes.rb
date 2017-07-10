@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :users, only: [:show, :edit, :update]
-
   get 'home/index'
 
   get 'home/search'
@@ -17,9 +15,9 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
       sessions: 'users/sessions',
       confirmation: 'users/confirmations',
-      registrations: 'users/registrations'
+      registrations: 'users/registrations',
+      passwords: 'users/passwords'
   }, path: 'users', path_names: {
-      password: 'secret',
       confirmation: 'verification',
       registration: 'register',
       sign_up: 'sign_up'
@@ -29,6 +27,8 @@ Rails.application.routes.draw do
     get 'login', to: 'users/sessions#new'
     get 'logout', to: 'users/sessions#destroy'
   end
+
+  resources :users, only: [:show, :edit, :update]
 
   root to: "home#index"
 

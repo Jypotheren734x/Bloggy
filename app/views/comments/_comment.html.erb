@@ -3,7 +3,7 @@
     <a href=""><img class="mx-auto rounded-circle img-fluid" src="http://demos.themes.guide/bodeo/assets/images/users/m103.jpg" alt="avatar"></a>
   </div>
   <div class="comment-content col-md-11 col-sm-10">
-    <h6 class="small comment-meta"><a href="#"><%= comment.user.full_name %></a> <%= comment.created_at %></h6>
+    <h6 class="small comment-meta"><a href="#"><%= comment.user.full_name %></a> <%= time_ago_in_words(comment.created_at) %> ago</h6>
     <div class="comment-body">
       <p>
         <%= comment.body %>
