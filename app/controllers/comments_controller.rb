@@ -9,7 +9,10 @@ class CommentsController < ApplicationController
   def create
     @comment = @commentable.comments.create comment_params
     @comment.save
-    p @comment
+    respond_to do |format|
+      format.html {redirect_to request.referrer}
+      format.js {}
+    end
   end
 
   private

@@ -1,0 +1,6 @@
+<% if @comment.commentable_type == 'Post' %>
+    $('#Comment-section').after("<%= j render @comment %>")
+<% else %>
+    $('#sub-comment-form'+<%= (@comment.commentable_id).to_s %>).toggleClass('show');
+    $('#sub-comment-form'+<%= (@comment.id - 1).to_s %>).after("<%= j render @comment %>");
+<% end %>

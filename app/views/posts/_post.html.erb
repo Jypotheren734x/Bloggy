@@ -1,0 +1,12 @@
+<div class="card">
+  <div class="card-block">
+    <h4 class="card-title"><%= link_to post.title, post_path(post) %>
+      By:<%= link_to post.user.full_name, user_path(post.user), method: :get %></h4>
+    <p class="card-text"><%= post.content.html_safe %></p>
+  </div>
+  <div class="card-footer">
+    <p class="card-text">
+      <small class="text-muted">Last updated: <%= time_ago_in_words(post.updated_at) %> ago</small>
+    </p>
+  </div>
+</div>
