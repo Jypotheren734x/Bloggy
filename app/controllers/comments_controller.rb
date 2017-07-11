@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @comment = @commentable.comments.create comment_params
+    @comment = @commentable.comments.new(comment_params)
     @comment.save
     respond_to do |format|
       format.html {redirect_to request.referrer}
@@ -18,8 +18,8 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params[:comment][:followed_id] = current_user.id
-    params.require(:comment).permit(:body, :followed_id)
+    params[:comment][:user_id] = current_user.id
+    params.require(:comment).permit(:body, :user_id)
   end
 
   def find_commentable

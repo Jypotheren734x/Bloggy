@@ -54,19 +54,26 @@
       <br/>
     </div>
     <hr/>
-    <div><a class="btn btn-secondary btn-xs"><i class="fa fa-bars" aria-hidden="true"></i> Show <%= post.comments.count %> comments</a>
+    <div><a href="#comments<%= post.id %>" class="btn btn-secondary btn-xs"  data-toggle="collapse" aria-expanded="false" aria-controls="comments<%= post.id %>"><i id="show_comments<%= post.id %>" class="fa fa-bars" aria-hidden="true"> Show <%= post.comments.count %> comments</i></a>
       <hr/>
-      <div class="media">
+      <div class="media" id="comment-form">
         <div class="pull-left">
           <a href="#">
             <img class="media-object img-circle" src="https://lut.im/7JCpw12uUT/mY0Mb78SvSIcjvkf.png" width="35px" height="35px" style="margin-left:3px; margin-right:-5px;">
           </a>
         </div>
         <div class="media-body">
-          <textarea class="form-control" rows="1" placeholder="Comment"></textarea>
+          <%= form_with(model: [post, Comment.new], id: "new-post-comment") do |f| %>
+              <div class="form-group">
+                <%= f.text_area :body, class: "form-control", rows: 1 %>
+              <button id="new_post" type="submit" name="say" class="btn btn-primary btn-sm"><i class="fa fa-reply"></i> Submit</button>
+              </div>
+          <% end %>
         </div>
       </div>
-      <%= render post.comments %>
+      <div class="collapse" id="comments<%= post.id %>">
+        <%= render post.comments.reverse %>
+      </div>
     </div>
   </div>
 </div>

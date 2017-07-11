@@ -1,6 +1,8 @@
 <% if @comment.commentable_type == 'Post' %>
-    $('#Comment-section').after("<%= j render @comment %>")
+    $('#show_comments<%= @comment.commentable_id %>').text("Show <%= @commentable.comments.count %> comments");
+    $('#comments').after("<%= render @comment %>")
 <% else %>
-    $('#sub-comment-form'+<%= (@comment.commentable_id).to_s %>).toggleClass('show');
-    $('#sub-comment-form'+<%= (@comment.id - 1).to_s %>).after("<%= j render @comment %>");
+    console.log(<%= @comment.post.comments.count %>)
+    $('#sub-comment-form<%= (@comment.commentable_id).to_s %>').toggleClass('show');
+    $('#sub-comment-form<%= (@comment.id - 1).to_s %>').after("<%= j render @comment %>");
 <% end %>

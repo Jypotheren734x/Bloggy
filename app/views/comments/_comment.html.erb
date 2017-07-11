@@ -1,19 +1,24 @@
-<div class="post-content">
-    <div class="card-block">
-      <div class="float-left"><a href="#">
-        <img class="media-object rounded-circle" src="https://diaspote.org/uploads/images/thumb_large_283df6397c4db3fe0344.png" width="35px" height="35px" style="margin-right: 8px; margin-top: -5px;"/>
-      </a>
-      </div>
-      <h4><a href="#" style="text-decoration: none;"><strong><%= comment.user.full_name %></strong></a></h4>
-      <hr/>
-      <div class="post-content">
+<div class="comment mb-2 row">
+  <div class="comment-avatar col-md-1 col-sm-2 text-center pr-1">
+    <a href=""><img class="mx-auto rounded-circle img-fluid" src="http://demos.themes.guide/bodeo/assets/images/users/m103.jpg" alt="avatar"></a>
+  </div>
+  <div class="comment-content col-md-11 col-sm-10">
+    <h6 class="small comment-meta"><a href="#"><%= comment.user.full_name %></a> <%= time_ago_in_words(comment.created_at) %> ago</h6>
+    <div class="comment-body">
+      <p>
         <%= comment.body %>
-        <small>
-          <small>
-            <a href="#" style="text-decoration: none;"><i><i class="fa fa-clock-o" aria-hidden="true"></i> 12
-              minutes ago</i></a></small>
-        </small>
-      </div>
-      <%= render comment.comments %>
+        <br>
+        <a href="#sub-comment-form<%= comment.id %>" class="text-right small" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample"><i class="ion-reply"></i>
+          Reply</a>
+      </p>
+      <%= form_with(model: [comment, Comment.new], class: "collapse", id: "sub-comment-form"+comment.id.to_s) do |f| %>
+          <div class="form-group">
+            <%= hidden_field_tag :user_full_name, current_user.full_name %>
+            <%= f.text_area :body, class: "form-control" %>
+          </div>
+          <button id="new_post" type="submit" name="say" class="btn btn-primary"><i class="fa fa-reply"></i> Submit
+          </button>
+      <% end %>
     </div>
+  </div>
 </div>
