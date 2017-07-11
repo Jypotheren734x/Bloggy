@@ -1,4 +1,4 @@
-<% if @comment.commentable_type == 'Post' %>
+<% if @comment.commentable_type === 'Post' %>
     $('#show_comments<%= @comment.commentable_id %>').text("Show <%= @commentable.comments.count %> comments");
     $('#comments').after("<%= render @comment %>")
 <% else %>

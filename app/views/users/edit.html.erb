@@ -54,20 +54,7 @@
         </div>
         <div class="tab-pane" id="posts">
           <% @user.posts.each do |post| %>
-              <div class="card" id="<%= post.id %>">
-                <div class="card-block">
-                  <div>
-                    <%= link_to "Delete Post", post, method: :delete, remote: true, class: "fa fa-minus close " + post.id.to_s %>
-                  </div>
-                  <h4 class="card-title"><%= link_to post.title, post_path(post), method: :get %></h4>
-                  <p class="card-text"><%= post.content.html_safe %></p>
-                </div>
-                <div class="card-footer">
-                  <p class="card-text">
-                    <small class="text-muted">Last updated: <%= post.updated_at %></small>
-                  </p>
-                </div>
-              </div>
+              <%= render post %>
           <% end %>
         </div>
         <div class="tab-pane" id="messages">

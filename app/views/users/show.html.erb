@@ -6,8 +6,19 @@
         <span>
                         <h1 class="card-title float-left" style="font-size: 30px;"><%= @user.full_name %>
                           <small><%= @user.email %></small> <i class="fa fa-check text-success" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="John Doe is sharing with you"></i></h1>
-          </button>
-                </span>
+          <div class="float-right" id="followbtn">
+             <% if !current_user.following?(@user) %>
+                <%= form_with(model: current_user, url: followers_path, method: :create) do |f| %>
+                  <%= hidden_field_tag :followed_id, @user.id %>
+                  <%= f.submit "Follow", class: "btn btn-success"%>
+                <% end %>
+              <% else %>
+                <%= form_with(model: current_user, url: follower_path(@user), method: :delete) do |f| %>
+                    <%= f.submit "UnFollow", class: "btn btn-danger"%>
+                <% end %>
+              <% end %>
+          </div>
+        </span>
         <br/>
         <br/> <i class="fa fa-tags" aria-hidden="true"></i> <a href="/tags/diaspora" class="tag">#diaspora</a>
         <a href="/tags/hashtag" class="tag">#hashtag</a>
@@ -17,20 +28,19 @@
         <br/>
         <hr/>
         <span class="float-left">
+              <a href="#" class="btn btn-link" style="text-decoration: none;"><i class="fa fa-fw fa-files-o" aria-hidden="true"></i> Posts: <%= @user.posts.count %></a>
+              <a href="#" class="btn btn-link" style="text-decoration: none;"><i class="fa fa-fw fa-picture-o" aria-hidden="true"></i> Views: <%= @user.views %></a>
+              <a href="#" class="btn btn-link" style="text-decoration: none;"><i class="fa fa-fw fa-users" aria-hidden="true"></i> Followers: <%= @user.followers.count %></a>
+          </span>
+        <span class="float-right">
 
-                        <a href="#" class="btn btn-link" style="text-decoration: none;"><i class="fa fa-fw fa-files-o" aria-hidden="true"></i> Posts</a>
+              <a href="#" class="btn btn-link" style="text-decoration: none;"><i class="fa fa-lg fa-at" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Mention"></i></a>
 
-                        <a href="#" class="btn btn-link" style="text-decoration: none;"><i class="fa fa-fw fa-picture-o" aria-hidden="true"></i> Photos <span class="badge">42</span>
-                    </a> <a href="#" class="btn btn-link" style="text-decoration: none;"><i class="fa fa-fw fa-users" aria-hidden="true"></i> Contacts <span class="badge">42</span></a>
-                    </span> <span class="float-right">
+              <a href="#" class="btn btn-link" style="text-decoration: none;"><i class="fa fa-lg fa-envelope-o" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Message"></i></a>
 
-                        <a href="#" class="btn btn-link" style="text-decoration: none;"><i class="fa fa-lg fa-at" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Mention"></i></a>
+              <a href="#" class="btn btn-link" style="text-decoration: none;"><i class="fa fa-lg fa-ban" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Ignore"></i></a>
 
-                        <a href="#" class="btn btn-link" style="text-decoration: none;"><i class="fa fa-lg fa-envelope-o" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Message"></i></a>
-
-                        <a href="#" class="btn btn-link" style="text-decoration: none;"><i class="fa fa-lg fa-ban" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Ignore"></i></a>
-
-                    </span>
+          </span>
       </div>
     </div>
     <hr/>
@@ -38,17 +48,5 @@
     <% @user.posts.each do |post| %>
         <%= render post %>
     <% end %>
-    <!-- Sample post content with comments. -->
-    <div class="media">
-      <div class="float-left"><a href="#">
-
-        <img class="media-object rounded-circle" src="https://lut.im/7JCpw12uUT/mY0Mb78SvSIcjvkf.png" width="35px" height="35px" style="margin-left: 3px; margin-right: -5px;"/>
-
-      </a>
-      </div>
-      <div class="media-body">
-        <textarea class="form-control" rows="1" placeholder="Comment"></textarea>
-      </div>
-    </div>
   </div>
 </div>

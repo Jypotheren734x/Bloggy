@@ -1,6 +1,8 @@
                   Prefix Verb   URI Pattern                              Controller#Action
-           relationships POST   /relationships(.:format)                 relationships#create
-            relationship DELETE /relationships/:id(.:format)             relationships#destroy
+                   likes POST   /likes(.:format)                         likes#create
+                    like DELETE /likes/:id(.:format)                     likes#destroy
+               followers POST   /followers(.:format)                     followers#create
+                follower DELETE /followers/:id(.:format)                 followers#destroy
               home_index GET    /home/index(.:format)                    home#index
              home_search GET    /home/search(.:format)                   home#search
            post_comments POST   /posts/:post_id/comments(.:format)       comments#create

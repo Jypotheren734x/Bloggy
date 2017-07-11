@@ -1,0 +1,3 @@
+<% if current_user.following?(@user) %>
+$('#followbtn').html('<%= form_with(model: current_user, url: follower_path(@user), method: :delete) do |f| %><%= f.submit "UnFollow", class: "btn btn-danger", id: "followbtn" %><% end %>');
+<% end %>

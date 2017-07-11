@@ -5,6 +5,9 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @post.views ||= 0
+    @post.views += 1
+    @post.save
     @comment = Comment.new
   end
 

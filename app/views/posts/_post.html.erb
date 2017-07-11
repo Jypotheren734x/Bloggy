@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card" id="<%= post.id %>">
   <div class="card-block">
     <div class="float-left"><a href="#">
 
@@ -29,9 +29,10 @@
             </li>
             <li class="dropdown-item"><a href="#"><i class="fa fa-fw fa-eye-slash" aria-hidden="true"></i> Hide</a>
             </li>
+            <% if post.user == current_user %>
             <li role="separator" class="divider dropdown-item"></li>
-            <li class="dropdown-item"><a href="#"><i class="fa fa-fw fa-trash" aria-hidden="true"></i> Delete</a>
-            </li>
+            <li class="dropdown-item"><a href="#"><%= link_to "Delete", post, method: :delete, remote: true, class: "fa fa-fw fa-trash" %></li>
+            <% end %>
         </ul>
       </div>
     </div>
@@ -42,13 +43,20 @@
     </div>
     <hr/>
     <div>
-      <div class="float-right btn-group-xs">
-        <a class="btn btn-secondary btn-xs"><i class="fa fa-heart" aria-hidden="true"></i> Like</a>
-        <a
-        class="btn btn-secondary btn-xs"><i class="fa fa-comment" aria-hidden="true"></i> Comment</a>
+      <div class="float-right">
+        <a href="#comments-form<%= post.id %>" class="btn btn-secondary btn-xs"  data-toggle="collapse" aria-expanded="false" aria-controls="comments-form"><i class="fa fa-comment" aria-hidden="true"></i> Comment</a>
       </div>
       <div class="float-left">
-        <p class="text-muted" style="margin-left: 5px;"><i class="fa fa-user-secret" aria-hidden="true"></i> Limited
+        <p class="text-muted" style="margin-left: 5px;"><i class="fa fa-eye" aria-hidden="true"></i> Views: <%= post.views %>
+          <% if !current_user.liked?(post) %>
+              <a id="likebtn<%= post.id %>" href="" class="fa fa-thumbs-up" onclick="$('#like-form<%= post.id %>').submit();" style="color: slategrey;"></a> Likes: <%= post.likes.count %>
+              <%= form_with(model: current_user, url: likes_path, method: :create, id: "like-form#{post.id}") do |f| %>
+                  <%= hidden_field_tag :liked_id, post.id %>
+              <% end %>
+          <% else %>
+              <a id="likebtn<%= post.id %>" href="" class="fa fa-thumbs-up" onclick="$('#like-form<%= post.id %>').submit();" style="color: #0000ff;"></a> Likes: <%= post.likes.count %>
+              <%= form_with(model: current_user, url: like_path(post), method: :delete, id: "like-form#{post.id}") do |f| %><% end %>
+          <% end %>
         </p>
       </div>
       <br/>
@@ -56,19 +64,21 @@
     <hr/>
     <div><a href="#comments<%= post.id %>" class="btn btn-secondary btn-xs"  data-toggle="collapse" aria-expanded="false" aria-controls="comments<%= post.id %>"><i id="show_comments<%= post.id %>" class="fa fa-bars" aria-hidden="true"> Show <%= post.comments.count %> comments</i></a>
       <hr/>
-      <div class="media" id="comment-form">
-        <div class="pull-left">
-          <a href="#">
-            <img class="media-object img-circle" src="https://lut.im/7JCpw12uUT/mY0Mb78SvSIcjvkf.png" width="35px" height="35px" style="margin-left:3px; margin-right:-5px;">
-          </a>
-        </div>
-        <div class="media-body">
-          <%= form_with(model: [post, Comment.new], id: "new-post-comment") do |f| %>
-              <div class="form-group">
-                <%= f.text_area :body, class: "form-control", rows: 1 %>
-              <button id="new_post" type="submit" name="say" class="btn btn-primary btn-sm"><i class="fa fa-reply"></i> Submit</button>
-              </div>
-          <% end %>
+      <div class="collapse" id="comments-form<%= post.id %>">
+        <div class="media">
+          <div class="pull-left">
+            <a href="#">
+              <img class="media-object img-circle" src="https://lut.im/7JCpw12uUT/mY0Mb78SvSIcjvkf.png" width="35px" height="35px" style="margin-left:3px; margin-right:-5px;">
+            </a>
+          </div>
+          <div class="media-body">
+            <%= form_with(model: [post, Comment.new], id: "new-post-comment") do |f| %>
+                <div class="form-group">
+                  <%= f.text_area :body, class: "form-control", rows: 1 %>
+                <button id="new_post" type="submit" name="say" class="btn btn-primary btn-sm"><i class="fa fa-reply"></i> Submit</button>
+                </div>
+            <% end %>
+          </div>
         </div>
       </div>
       <div class="collapse" id="comments<%= post.id %>">

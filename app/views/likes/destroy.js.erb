@@ -1,0 +1,6 @@
+/**
+ * Created by nick on 7/11/17.
+ */
+<% if !current_user.liked?(@post) %>
+$('likebtn<%= @post.id %>').style.color = "#3f3f3f"
+<% end %>

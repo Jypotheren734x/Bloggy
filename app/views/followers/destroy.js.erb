@@ -1,0 +1,6 @@
+/**
+ * Created by nick on 7/11/17.
+ */
+<% if !current_user.following?(@user) %>
+$('#followbtn').html('<%= form_with(model: current_user, url: followers_path, method: :create) do |f| %><%= hidden_field_tag :followed_id, @user.id %><%= f.submit "Follow", class: "btn btn-success", id: "followbtn" %><% end %>');
+<% end %>
