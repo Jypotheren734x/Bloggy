@@ -1,4 +1,8 @@
                   Prefix Verb   URI Pattern                              Controller#Action
+             friendships POST   /friendships(.:format)                   friendships#create
+              friendship PATCH  /friendships/:id(.:format)               friendships#update
+                         PUT    /friendships/:id(.:format)               friendships#update
+                         DELETE /friendships/:id(.:format)               friendships#destroy
                    likes POST   /likes(.:format)                         likes#create
                     like DELETE /likes/:id(.:format)                     likes#destroy
                followers POST   /followers(.:format)                     followers#create

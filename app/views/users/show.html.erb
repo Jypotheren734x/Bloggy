@@ -1,11 +1,10 @@
 <div class="row">
-  <div style="padding-top: 50px;">&nbsp;</div>
-  <div class="col-xl-9 col-lg-9 col-md-12 col-12">
+  <div class="col-8">
     <div class="card">
       <div class="card-block">
         <span>
-                        <h1 class="card-title float-left" style="font-size: 30px;"><%= @user.full_name %>
-                          <small><%= @user.email %></small> <i class="fa fa-check text-success" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="John Doe is sharing with you"></i></h1>
+          <h1 class="card-title float-left" style="font-size: 30px;"><%= @user.full_name %>
+            <small><%= @user.email %></small> <i class="fa fa-check text-success" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="John Doe is sharing with you"></i></h1>
           <div class="float-right" id="followbtn">
              <% if !current_user.following?(@user) %>
                 <%= form_with(model: current_user, url: followers_path, method: :create) do |f| %>
@@ -17,6 +16,11 @@
                     <%= f.submit "UnFollow", class: "btn btn-danger"%>
                 <% end %>
               <% end %>
+          </div>
+          <div class="float-right" id="friendbtn">
+                <%= form_with(model: current_user, url: friendships_path(friend_id: @user), method: :post) do |f| %>
+                  <%= f.submit "Add Friend", class: "btn btn-success"%>
+                <% end %>
           </div>
         </span>
         <br/>
@@ -45,8 +49,46 @@
     </div>
     <hr/>
     <!-- Simple post content example. -->
-    <% @user.posts.each do |post| %>
+    <% @user.posts.reverse.each do |post| %>
         <%= render post %>
     <% end %>
+  </div>
+  <div class="col-4">
+    <div class="card">
+      <div class="card-header c-list">
+        <span class="title">Friends</span>
+        <ul class="pull-right c-controls">
+          <li>
+            <a href="#" class="hide-search" data-command="toggle-search"><i class="fa fa-search"></i></a>
+          </li>
+        </ul>
+      </div>
+      <div class="row" style="display: none;">
+        <div class="col-12">
+          <div class="input-group c-search">
+            <input type="text" class="form-control" id="contact-list-search">
+            <span class="input-group-btn"><button class="btn btn-default" type="button"><span class="fa fa-search text-muted"></span></button></span>
+          </div>
+        </div>
+      </div>
+      <ul class="list-group" id="contact-list">
+        <li class="list-group-item">
+          <% @user.friends.each do |friend| %>
+            <li class="list-group-item">
+              <div class="col-xs-12 col-sm-3">
+                <img src="http://api.randomuser.me/portraits/women/76.jpg" alt="Glenda Patterson" class="img-responsive img-circle"/>
+              </div>
+              <div class="col-xs-12 col-sm-9">
+                <span class="name"><%= friend.full_name %></span><br/>
+                <span><i class="fa fa-fw fa-files-o" aria-hidden="true"></i> Posts: <%= friend.posts.count %></span>
+                <span><i class="fa fa-fw fa-picture-o" aria-hidden="true"></i> Views: <%= friend.views %></span>
+                <span><i class="fa fa-fw fa-users" aria-hidden="true"></i> Followers: <%= friend.followers.count %></span>
+              </div>
+              <div class="clearfix"></div>
+            </li>
+            <% end %>
+        </li>
+      </ul>
+    </div>
   </div>
 </div>

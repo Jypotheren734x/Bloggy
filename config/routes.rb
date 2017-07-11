@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
 
-  resources 'likes', only: [:create, :destroy]
+  resources :friendships, only: [:create, :update, :destroy]
 
-  resources 'followers', only: [:create, :destroy]
+  resources :likes, only: [:create, :destroy]
+
+  resources :followers, only: [:create, :destroy]
 
   get 'home/index'
 

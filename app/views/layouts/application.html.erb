@@ -28,7 +28,7 @@
             Notifications:
           </li>
           <li>
-            Friend Requests:
+            Friend Requests: <%= current_user.requested_friends.count %>
           </li>
           <li>
             <%= link_to 'Settings', edit_user_path(current_user), method: :get, class: "nav-link" %>

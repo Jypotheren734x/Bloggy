@@ -23,9 +23,24 @@ class User < ApplicationRecord
            dependent:   :destroy
 
   has_many :liked, through: :active_likes, source: :liked
-
   has_many :following, through: :active_followers, source: :followed
   has_many :followers, through: :passive_followers, source: :follower
+
+  has_many :friendships
+  has_many :received_friendships, class_name: "Friendship", foreign_key: "friend_id"
+
+  has_many :active_friends, -> { where(friendships: { accepted: true }) }, through: :friendships, source: :friend
+  has_many :received_friends, -> { where(friendships: { accepted: true }) }, through: :received_friendships, source: :user
+  has_many :pending_friends, -> { where(friendships: { accepted: false }) }, through: :friendships, source: :friend
+  has_many :requested_friends, -> { where(friendships: { accepted: false }) }, through: :received_friendships, source: :user
+
+  def friends
+    active_friends | received_friends
+  end
+
+  def pending
+    pending_friends | requested_friends
+  end
 
   def follow(other_user)
     following << other_user
