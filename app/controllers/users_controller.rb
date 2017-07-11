@@ -15,9 +15,4 @@ class UsersController < ApplicationController
     current_user.update(last_name: params[:user][:last_name]) if !params[:user][:last_name].nil?
   end
 
-  def follow
-    @user = User.find(params[:id])
-    @user.update(number_of_followers: @user.followers+1)
-  end
-
 end

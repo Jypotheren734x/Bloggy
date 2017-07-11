@@ -1,15 +1,17 @@
 Rails.application.routes.draw do
 
+  resources 'relationships', only: [:create, :destroy]
+
   get 'home/index'
 
   get 'home/search'
 
   resources :posts do
-    resources :comments
+    resources :comments, only: [:create]
   end
 
-  resources :comments do
-    resources :comments
+  resources :comments, only: [:create] do
+    resources :comments, only: [:create]
   end
 
   devise_for :users, controllers: {
@@ -29,7 +31,6 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: [:show, :edit, :update]
-
   root to: "home#index"
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

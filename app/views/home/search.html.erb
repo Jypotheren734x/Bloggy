@@ -5,28 +5,20 @@
       <h1>Users</h1>
       <ul>
         <% @users.each do |user| %>
-            <li class="list-group-item">
-              <div class="col-xs-12 col-sm-3">
-                <img src="http://api.randomuser.me/portraits/men/1.jpg" alt="Scott Stevens" class="img-fluid rounded-circle"/>
-              </div>
-              <div class="col-xs-12 col-sm-9">
-                <span class="name"><%= link_to user.full_name, user_path(user) %></a></span><br/>
-                <span class="fa fa-envelope text-muted c-info" data-toggle="tooltip"></span>
-                <span class="visible-xs"> <span class="text-muted"><%= user.email %></span><br/></span>
-                <span class="fa fa-user text-muted c-info" data-toggle="tooltip"></span>
-                <span class="visible-xs"> <span class="text-muted">Followers: <%= user.number_of_followers %></span><br/></span>
-                <span class="fa fa-eye text-muted c-info" data-toggle="tooltip"></span>
-                <span class="visible-xs"> <span class="text-muted">Views: <%= user.views %></span><br/></span>
-                <span class="fa fa-file-text text-muted c-info" data-toggle="tooltip"></span>
-                <span class="visible-xs"> <span class="text-muted">Posts: <%= user.number_of_posts %></span><br/></span>
-                <% if !session[:user].nil?
-                     if user.id != session[:user].id %>
-                        <a href="/add_friend/<%= user.id %>"><i class="fa fa-plus"></i>Add Friend</a>
-                    <% end %>
-                <% end %>
-              </div>
-              <div class="clearfix"></div>
-            </li>
+                  <div class="card">
+                      <div class="row">
+                        <div class="col-xs-12 col-sm-4 text-center">
+                          <img src="http://api.randomuser.me/portraits/men/49.jpg" alt="" class="center-block img-circle img-responsive">
+                          <h4><%= user.full_name %></h4>
+                        </div><!--/col-->
+                        <div class="col-xs-12 col-sm-3">
+                          <h3><strong>Posts: <%= user.posts.count %></strong></h3>
+                          <h3><strong>Followers: <%= user.followers.count %> </strong></h3>
+                          <h2><strong>Following: <%= user.following.count %></strong></h2>
+                          <%= link_to "View Profile", user_path(user) ,class: "btn btn-info btn-block fa fa-user" %>
+                        </div><!--/col-->
+                      </div><!--/row-->
+                  </div><!--/panel-->
         <% end %>
       </ul>
       <h1>Posts</h1>

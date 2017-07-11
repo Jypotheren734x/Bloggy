@@ -5,20 +5,34 @@ class User < ApplicationRecord
   after_initialize :init
 
   def init
-    self.number_of_posts ||= 0
     self.views ||= 0
-    self.followers ||= 0
   end
 
   has_many :posts
   has_many :comments
 
-  has_many :friend_requests, dependent: :destroy
-  has_many :pending_friends, through: :friend_requests, source: :friend
-  has_many :friendships, dependent: :destroy
-  has_many :friends, through: :friendships
+  has_many :active_relationships, class_name:  "Relationship",
+           foreign_key: "follower_id",
+           dependent:   :destroy
+  has_many :passive_relationships, class_name:  "Relationship",
+           foreign_key: "followed_id",
+           dependent:   :destroy
 
-  has_and_belongs_to_many :followers, class_name: "User", join_table: :followers, foreign_key: :user_id, association_foreign_key: :follower_id
+  has_many :following, through: :active_relationships, source: :followed
+  has_many :followers, through: :passive_relationships, source: :follower
+
+  def follow(other_user)
+    following << other_user
+  end
+
+  def unfollow(other_user)
+    following.delete(other_user)
+  end
+
+  def following?(other_user)
+    following.include?(other_user)
+  end
+
 
   def full_name
     first_name + " " + last_name

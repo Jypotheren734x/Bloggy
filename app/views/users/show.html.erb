@@ -1,105 +1,54 @@
-<div class="container">
-  <div class="row m-y-2">
-    <div class="col-lg-8 push-lg-4">
-      <ul class="nav nav-tabs">
-        <li class="nav-item">
-          <a href="" data-target="#profile" data-toggle="tab" class="nav-link active">Profile</a>
-        </li>
-        <li class="nav-item">
-          <a href="" data-target="#posts" data-toggle="tab" class="nav-link">Posts</a>
-        </li>
-      </ul>
-      <div class="tab-content p-b-4">
-        <div class="tab-pane active" id="profile">
-          <h4 class="m-y-2"><%= @user.full_name %></h4>
-          <div class="row">
-            <div class="col-md-6">
-              <p>
-                Username: <%= @user.username %>
-              </p>
-              <p>
-                Age: <%= @user.age %>
-              </p>
-            </div>
-            <div class="col-md-6">
-              <h6>Recent Tags</h6>
-              <a href="" class="tag tag-default tag-pill">html5</a>
-              <a href="" class="tag tag-default tag-pill">react</a>
-              <a href="" class="tag tag-default tag-pill">codeply</a>
-              <a href="" class="tag tag-default tag-pill">angularjs</a>
-              <a href="" class="tag tag-default tag-pill">css3</a>
-              <a href="" class="tag tag-default tag-pill">jquery</a>
-              <a href="" class="tag tag-default tag-pill">bootstrap</a>
-              <a href="" class="tag tag-default tag-pill">responsive-design</a>
-              <hr>
-              <span class="tag tag-primary"><i class="fa fa-user"></i> Followers: <%= @user.number_of_followers %></span>
-              <span class="tag tag-danger"><i class="fa fa-eye"></i> Views: <%= @user.views %></span>
-              <span class="tag tag-danger"><i class="fa fa-file-text"></i> Posts: <%= @user.number_of_posts %></span>
-            </div>
-            <div class="col-md-12">
-              <h4 class="m-t-2"><span class="fa fa-clock-o ion-clock pull-xs-right"></span> Recent Activity</h4>
-              <table class="table table-hover table-striped">
-                <tbody>
-                <tr>
-                  <td>
-                    <strong>Abby</strong> joined ACME Project Team in <strong>`Collaboration`</strong>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <strong>Gary</strong> deleted My Board1 in <strong>`Discussions`</strong>
-                  </td>
+<div class="row">
+  <div style="padding-top: 50px;">&nbsp;</div>
+  <div class="col-xl-9 col-lg-9 col-md-12 col-12">
+    <div class="card">
+      <div class="card-block">
+        <span>
+                        <h1 class="card-title float-left" style="font-size: 30px;"><%= @user.full_name %>
+                          <small><%= @user.email %></small> <i class="fa fa-check text-success" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="John Doe is sharing with you"></i></h1>
+          </button>
+                </span>
+        <br/>
+        <br/> <i class="fa fa-tags" aria-hidden="true"></i> <a href="/tags/diaspora" class="tag">#diaspora</a>
+        <a href="/tags/hashtag" class="tag">#hashtag</a>
+        <a
+        href="/tags/caturday" class="tag">#caturday</a>
+        <br/>
+        <br/>
+        <hr/>
+        <span class="float-left">
 
-                </tr>
-                <tr>
-                  <td>
-                    <strong>Kensington</strong> deleted MyBoard3 in <strong>`Discussions`</strong>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <strong>John</strong> deleted My Board1 in <strong>`Discussions`</strong>
-                  </td>
+                        <a href="#" class="btn btn-link" style="text-decoration: none;"><i class="fa fa-fw fa-files-o" aria-hidden="true"></i> Posts</a>
 
-                </tr>
-                <tr>
-                  <td>
-                    <strong>Skell</strong> deleted his post Look at Why this is.. in <strong>`Discussions`</strong>
-                  </td>
-                </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-          <!--/row-->
-        </div>
-        <div class="tab-pane" id="posts">
-          <% @user.posts.each do |post| %>
-              <div class="card">
-                <div class="card-block">
-                  <h4 class="card-title"><%= link_to post.title, post_path(post), method: :get %></h4>
-                  <p class="card-text"><%= post.content.html_safe %></p>
-                </div>
-                <div class="card-footer">
-                  <p class="card-text">
-                    <small class="text-muted">Last updated: <%= post.updated_at %></small>
-                  </p>
-                </div>
-              </div>
-          <% end %>
-        </div>
+                        <a href="#" class="btn btn-link" style="text-decoration: none;"><i class="fa fa-fw fa-picture-o" aria-hidden="true"></i> Photos <span class="badge">42</span>
+                    </a> <a href="#" class="btn btn-link" style="text-decoration: none;"><i class="fa fa-fw fa-users" aria-hidden="true"></i> Contacts <span class="badge">42</span></a>
+                    </span> <span class="float-right">
+
+                        <a href="#" class="btn btn-link" style="text-decoration: none;"><i class="fa fa-lg fa-at" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Mention"></i></a>
+
+                        <a href="#" class="btn btn-link" style="text-decoration: none;"><i class="fa fa-lg fa-envelope-o" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Message"></i></a>
+
+                        <a href="#" class="btn btn-link" style="text-decoration: none;"><i class="fa fa-lg fa-ban" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Ignore"></i></a>
+
+                    </span>
       </div>
     </div>
-    <div class="col-lg-4 pull-lg-8 text-xs-center">
-      <img src="//placehold.it/150" class="m-x-auto img-fluid img-circle" alt="avatar">
-      <h6 class="m-t-2">Upload a different photo</h6>
-      <label class="custom-file">
-        <input type="file" id="file" class="custom-file-input">
-        <span class="custom-file-control">Choose file</span>
-      </label>
-      <p>
-      </p>
+    <hr/>
+    <!-- Simple post content example. -->
+    <% @user.posts.each do |post| %>
+        <%= render post %>
+    <% end %>
+    <!-- Sample post content with comments. -->
+    <div class="media">
+      <div class="float-left"><a href="#">
+
+        <img class="media-object rounded-circle" src="https://lut.im/7JCpw12uUT/mY0Mb78SvSIcjvkf.png" width="35px" height="35px" style="margin-left: 3px; margin-right: -5px;"/>
+
+      </a>
+      </div>
+      <div class="media-body">
+        <textarea class="form-control" rows="1" placeholder="Comment"></textarea>
+      </div>
     </div>
   </div>
 </div>
-<hr>

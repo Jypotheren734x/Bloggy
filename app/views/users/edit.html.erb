@@ -38,28 +38,14 @@
               <a href="" class="tag tag-default tag-pill">bootstrap</a>
               <a href="" class="tag tag-default tag-pill">responsive-design</a>
               <hr>
-              <span class="tag tag-primary"><i class="fa fa-user"></i> Followers: <%= @user.number_of_followers %></span>
+              <span class="tag tag-primary"><i class="fa fa-user"></i> Followers: <%= @user.followers.count %></span>
               <span class="tag tag-danger"><i class="fa fa-eye"></i> Views: <%= @user.views %></span>
-              <span class="tag tag-danger"><i class="fa fa-file-text"></i> Posts: <%= @user.number_of_posts %></span>
+              <span class="tag tag-danger"><i class="fa fa-file-text"></i> Posts: <%= @user.posts.count %></span>
             </div>
             <div class="col-md-12">
               <h4 class="m-t-2"><span class="fa fa-clock-o ion-clock pull-xs-right"></span> Recent Activity</h4>
               <table class="table table-hover table-striped">
                 <tbody>
-                <% @user.comments.each do |comments| %>
-                    <tr>
-                      <td>
-                        <h4 class="card-title"><%= comments.body %></h4>
-                      </td>
-                    </tr>
-                <% end %>
-                <% @user.posts.each do |post| %>
-                    <tr>
-                      <td>
-                        <h4 class="card-title"><%= link_to post.title, post_path(post), method: :get %> Created at: <%= post.created_at %></h4>
-                      </td>
-                    </tr>
-                <% end %>
                 </tbody>
               </table>
             </div>
@@ -86,12 +72,17 @@
         </div>
         <div class="tab-pane" id="messages">
           <h4 class="m-y-2">Recent Messages &amp; Notifications</h4>
-          <div class="alert alert-info alert-dismissable">
-            <a class="panel-close close" data-dismiss="alert">×</a> This is an <strong>.alert</strong>. Use this to show
-            important messages to the user.
-          </div>
           <table class="table table-hover table-striped">
             <tbody>
+            <% @user.following.each do |following| %>
+                <% following.posts.each do |post| %>
+                    <tr>
+                      <td>
+                        <h4 class="card-title"><%= link_to post.title, post_path(post)%> By: <%= link_to post.user.username, user_path(post.user) %> Created: <%= time_ago_in_words(post.created_at) %></h4>
+                      </td>
+                    </tr>
+                <% end %>
+            <% end %>
             </tbody>
           </table>
         </div>

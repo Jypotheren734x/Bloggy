@@ -14,7 +14,7 @@ class PostsController < ApplicationController
 
   def new
     @post = current_user.posts.new(post_params)
-    current_user.update(number_of_posts: current_user.number_of_posts + 1) if @post.save
+    @post.save
     respond_to do |format|
       format.html {redirect_to request.referrer}
       format.js {}
@@ -23,7 +23,7 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.new(post_params)
-    current_user.update(number_of_posts: current_user.number_of_posts + 1) if @post.save
+    @post.save
     respond_to do |format|
       format.html {redirect_to request.referrer}
       format.js {}
@@ -36,15 +36,13 @@ class PostsController < ApplicationController
 
   def destroy
     @post = Post.find(params[:id])
-    if @post.destroy
-      current_user.update(number_of_posts: current_user.number_of_posts - 1)
-    end
+    @post.destroy
   end
 
   private
 
   def post_params
-    params.require(:post).permit(:title, :content, :user_id, :url)
+    params.require(:post).permit(:title, :content, :followed_id, :url)
   end
 
 end

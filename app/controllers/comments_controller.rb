@@ -18,8 +18,8 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params[:comment][:user_id] = current_user.id
-    params.require(:comment).permit(:body, :user_id)
+    params[:comment][:followed_id] = current_user.id
+    params.require(:comment).permit(:body, :followed_id)
   end
 
   def find_commentable
