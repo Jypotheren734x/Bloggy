@@ -22,7 +22,7 @@
   </form>
   <% if user_signed_in? %>
       <div class="nav-item dropdown" id="notification">
-        <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="display: inline-block"><i class="fa fa-bell-o" aria-hidden="true"></i></a>
+        <a id="bell" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="display: inline-block"><i class="fa fa-bell-o" aria-hidden="true"></i></a>
         <div id="n-section" class="dropdown-menu">
           <ul id="notifications" class="list-group">
             <% current_user.notifications.last(5).reverse.each do |notification| %>

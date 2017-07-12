@@ -18,9 +18,11 @@
               <% end %>
           </div>
           <div class="float-right" id="friendbtn">
-                <%= form_with(model: current_user, url: friendships_path(friend_id: @user), method: :post) do |f| %>
-                  <%= f.submit "Add Friend", class: "btn btn-success"%>
-                <% end %>
+         <% if !current_user.friends_with?(@user) %>
+            <%= form_with(model: current_user, url: friendships_path(friend_id: @user), method: :post) do |f| %>
+              <%= f.submit "Add Friend", class: "btn btn-success"%>
+            <% end %>
+        <% end %>
           </div>
         </span>
         <br/>

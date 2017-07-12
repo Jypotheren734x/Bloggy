@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!
   def index
     @post = Post.find(params[:id])
   end
@@ -27,6 +28,10 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.new(post_params)
     @post.save
+    @following = Follower.where(followed_id: current_user)
+    @following.each do |follower|
+      Notification.create(recipient: follower.follower, user: current_user, action: "followed_user_post", notifiable: follower.follower)
+    end
     respond_to do |format|
       format.html {redirect_to request.referrer}
       format.js {}

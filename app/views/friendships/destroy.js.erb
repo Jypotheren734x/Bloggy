@@ -1,0 +1,3 @@
+<% if !current_user.friends_with?(@user) %>
+$('#friendbtn').html('<<%= form_with(model: current_user, url: friendships_path(friend_id: @user), method: :delete) do |f| %><%= f.submit "Add Friend", class: "btn btn-success"%><% end %>>');
+<% end %>

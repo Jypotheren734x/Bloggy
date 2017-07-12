@@ -44,6 +44,10 @@ class User < ApplicationRecord
     pending_friends | requested_friends
   end
 
+  def friends_with?(user)
+    friends.include?(user)
+  end
+
   def follow(other_user)
     following << other_user
   end
@@ -55,6 +59,7 @@ class User < ApplicationRecord
   def following?(other_user)
     following.include?(other_user)
   end
+
   def like(post)
     liked << post
   end

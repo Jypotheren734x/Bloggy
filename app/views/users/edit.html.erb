@@ -85,17 +85,20 @@
       <div class="tab-content">
         <div class="tab-pane active" id="step1">
           <ul class="list-group" id="contact-list">
-            <% @user.friends.each do |friend| %>
+            <% @user.friendships.each do |friendships| %>
                 <li class="list-group-item">
                   <div class="col-xs-12 col-sm-3">
                     <img src="http://api.randomuser.me/portraits/women/76.jpg" alt="Glenda Patterson" class="img-responsive img-circle"/>
                   </div>
                   <div class="col-xs-12 col-sm-9">
-                    <span class="name"><%= friend.full_name %></span><br/>
-                    <span><i class="fa fa-fw fa-files-o" aria-hidden="true"></i> Posts: <%= friend.posts.count %></span>
-                    <span><i class="fa fa-fw fa-picture-o" aria-hidden="true"></i> Views: <%= friend.views %></span>
-                    <span><i class="fa fa-fw fa-users" aria-hidden="true"></i> Followers: <%= friend.followers.count %></span>
+                    <span class="name"><%= friendships.friend.full_name %></span><br/>
+                    <span><i class="fa fa-fw fa-files-o" aria-hidden="true"></i> Posts: <%= friendships.friend.posts.count %></span>
+                    <span><i class="fa fa-fw fa-picture-o" aria-hidden="true"></i> Views: <%= friendships.friend.views %></span>
+                    <span><i class="fa fa-fw fa-users" aria-hidden="true"></i> Followers: <%= friendships.friend.followers.count %></span>
                   </div>
+                  <%= form_with model: current_user, url: friendship_path(id: friendships.id), method: :delete do |f| %>
+                      <%= f.submit "Remove Friend", class: "btn btn-danger btn-xs" %>
+                  <% end %>
                   <div class="clearfix"></div>
                 </li>
             <% end %>
