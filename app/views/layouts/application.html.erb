@@ -21,15 +21,14 @@
     </div>
   </form>
   <% if user_signed_in? %>
+      <div class="nav-item dropdown" id="notification">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="display: inline-block"><i class="fa fa-bell-o" aria-hidden="true"></i><%= current_user.requested_friends.count %></a>
+        <ul id="notification-dp" class="dropdown-menu">
+        </ul>
+      </div>
       <div class="nav-item dropdown navbar-toggler-right" id="login">
-        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= current_user.email %></a>
-        <ul id="login-dp" class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-          <li>
-            Notifications:
-          </li>
-          <li>
-            Friend Requests: <%= current_user.requested_friends.count %>
-          </li>
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  style="display: inline-block"><%= current_user.email %></a>
+        <ul id="login-dp" class="dropdown-menu dropdown-menu-right">
           <li>
             <%= link_to 'Settings', edit_user_path(current_user), method: :get, class: "nav-link" %>
           </li>
