@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  mount ActionCable.server => '/cable'
+
   resources :friendships, only: [:create, :update, :destroy]
 
   resources :likes, only: [:create, :destroy]

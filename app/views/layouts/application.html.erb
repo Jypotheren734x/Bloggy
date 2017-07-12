@@ -22,8 +22,11 @@
   </form>
   <% if user_signed_in? %>
       <div class="nav-item dropdown" id="notification">
-        <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="display: inline-block"><i class="fa fa-bell-o" aria-hidden="true"></i><%= current_user.requested_friends.count %></a>
-        <ul id="notification-dp" class="dropdown-menu">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="display: inline-block"><i class="fa fa-bell-o" aria-hidden="true"></i><%= current_user.notifications.count %></a>
+        <ul id="notifications" class="dropdown-menu">
+          <% current_user.notifications.each do |notification| %>
+            <%= render  "notifications/#{notification.notifiable_type.underscore.pluralize}/#{notification.action}" %>
+          <% end %>
         </ul>
       </div>
       <div class="nav-item dropdown navbar-toggler-right" id="login">
