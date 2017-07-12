@@ -1,6 +1,6 @@
 <div class="comment mb-2 row">
   <div class="comment-avatar col-md-1 col-sm-2 text-center pr-1">
-    <a href=""><img class="mx-auto rounded-circle img-fluid" src="http://demos.themes.guide/bodeo/assets/images/users/m103.jpg" alt="avatar"></a>
+    <a href=""><img class="mx-auto rounded-circle img-fluid" src="http://api.randomuser.me/portraits/men/<%= comment.user.id.to_s %>.jpg" alt="avatar"></a>
   </div>
   <div class="comment-content col-md-11 col-sm-10">
     <h6 class="small comment-meta"><a href="#"><%= comment.user.full_name %></a> <%= time_ago_in_words(comment.created_at) %> ago</h6>
@@ -19,6 +19,7 @@
           <button id="new_post" type="submit" name="say" class="btn btn-primary"><i class="fa fa-reply"></i> Submit
           </button>
       <% end %>
+      <%= render comment.comments %>
     </div>
   </div>
 </div>

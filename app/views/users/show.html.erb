@@ -78,7 +78,7 @@
           <% @user.friends.each do |friend| %>
             <li class="list-group-item">
               <div class="col-xs-12 col-sm-3">
-                <img src="http://api.randomuser.me/portraits/women/76.jpg" alt="Glenda Patterson" class="img-responsive img-circle"/>
+                <img src="http://api.randomuser.me/portraits/men/<%= friend.id.to_s %>.jpg" alt="Glenda Patterson" class="img-responsive img-circle"/>
               </div>
               <div class="col-xs-12 col-sm-9">
                 <span class="name"><%= friend.full_name %></span><br/>

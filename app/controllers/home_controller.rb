@@ -3,6 +3,8 @@ class HomeController < ApplicationController
 
   def index
     @recent = Post.all.reverse
+    @popular = Like.order('liked_id desc').first(5)
+    @trending = Like.order('liked_id desc').order("created_at desc").first(5)
     @post = Post.new
   end
 

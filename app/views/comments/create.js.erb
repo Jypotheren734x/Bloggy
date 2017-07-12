@@ -1,8 +1,7 @@
 <% if @comment.commentable_type === 'Post' %>
     $('#show_comments<%= @comment.commentable_id %>').text("Show <%= @commentable.comments.count %> comments");
-    $('#comments').after("<%= render @comment %>")
+    $('#comments<%= @commentable.id %>').after("<%= j render @comment %>")
 <% else %>
-    console.log(<%= @comment.post.comments.count %>)
-    $('#sub-comment-form<%= (@comment.commentable_id).to_s %>').toggleClass('show');
-    $('#sub-comment-form<%= (@comment.id - 1).to_s %>').after("<%= j render @comment %>");
+    $('#sub-comment-form<%= @comment.commentable_id.to_s %>').toggleClass('show');
+    $('#sub-comment-form<%= @comment.commentable_id.to_s %>').after("<%= j render @comment %>");
 <% end %>

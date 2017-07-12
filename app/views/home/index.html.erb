@@ -37,17 +37,17 @@
   </div>
   <div class="col-2">
     <h1>Trending Posts</h1>
-    <% @recent.each do |post| %>
+    <% @trending.each do |post| %>
         <div class="card">
-          <h5 class="card-title"><%= link_to post.title, post_path(post) %>
-            By:<%= link_to post.user.full_name, user_path(post.user), method: :get %></h5>
+          <h5 class="card-title"><%= link_to post.liked.title, post_path(post.liked) %>
+            By:<%= link_to post.liked.user.full_name, user_path(post.liked.user), method: :get %></h5>
         </div>
     <% end %>
     <h1>Popular Posts</h1>
-    <% @recent.each do |post| %>
+    <% @popular.each do |post| %>
         <div class="card">
-          <h5 class="card-title"><%= link_to post.title, post_path(post) %>
-            By:<%= link_to post.user.full_name, user_path(post.user), method: :get %></h5>
+          <h5 class="card-title"><%= link_to post.liked.title, post_path(post.liked) %>
+            By:<%= link_to post.liked.user.full_name, user_path(post.liked.user), method: :get %></h5>
         </div>
     <% end %>
   </div>
