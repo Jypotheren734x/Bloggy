@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
+  
   def index
     @post = Post.find(params[:id])
   end
