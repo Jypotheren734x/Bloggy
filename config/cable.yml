@@ -6,4 +6,6 @@ test:
   adapter: async
 
 production:
-  adapter: async
+  adapter: redis
+  url: redis://h:p3ff7d5269a13ec1802c3ed35ce7e4ec2c35d497d31d997a6d0d3a3816c5c59de@ec2-34-227-145-196.compute-1.amazonaws.com:44929
+  channel_prefix: bloggy_production
